@@ -7,6 +7,10 @@ uint32_t leftEncHist[samples + 1] = {0};
 uint32_t rightEncHist[samples + 1] = {0};
 long timeHist[samples + 1] = {0};
 
+void Drive() {
+    
+}
+
 //Pass value from -1 to 1 to go from full reverse to full forwards
 void runRightMotor(double power) {
     if (power < -1) power = -1;

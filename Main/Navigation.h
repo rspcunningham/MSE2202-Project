@@ -4,6 +4,9 @@ void Navigation() {
     static long currentTime;
     static long lastTime;
     const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
+
+    currentTime = millis();
+
     boolean collision = getIRData();
 
     if (collision) {
@@ -12,10 +15,17 @@ void Navigation() {
 
     if (currentTime < lastTime + USinterval) return;
 
-    int distance = getDistance();
+    //Move servo to new position
+
+    //time of flight from ultrasound
+    long duration = getTOF();
+    double distance = duration * 0.0343 / 2;
+
+    lastTime = currentTime; 
 }
 
-int getDistance() {  // Call every 50 ms
+//sends ultrasound pulse, receives echo, calculates and returns time of flight
+int getTOF() {  // Call every 50 ms
 
     long duration;
     int distance;
@@ -30,10 +40,9 @@ int getDistance() {  // Call every 50 ms
 
     // Read the echoPin, pulseIn() returns the duration (length of the pulse) in microseconds:
     duration = pulseIn(pinUSecho, HIGH);
-    // Calculate the distance:
-    distance = duration * 0.034 / 2;
 
-    return distance;
+    return duration;
+    
 }
 
 boolean getIRData() {
