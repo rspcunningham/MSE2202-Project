@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "_Pinout.h"
 
+#include "Encoder.h"
 #include "Climbing.h"
 #include "Drive.h"
 #include "Navigation.h"

@@ -30,6 +30,7 @@
 
 #include <Arduino.h>
 
+
 #define NUMBER_OF_CHARACTERS_TRANSMITTED 10
 #define FREEZE_COUNT 3188  // ~150 ms; 2125 ~= 100 ms
 

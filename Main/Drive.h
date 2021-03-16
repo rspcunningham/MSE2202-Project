@@ -2,8 +2,16 @@ int maxPower = 255;
 int rightStallPower = 120;
 int leftStallPower = 120;
 
+const int samples = 5;
+uint32_t leftEncHist[samples + 1] = {0};
+uint32_t rightEncHist[samples + 1] = {0};
+long timeHist[samples + 1] = {0};
+
 //Pass value from -1 to 1 to go from full reverse to full forwards
-void runRightMotor(double power) { 
+void runRightMotor(double power) {
+    if (power < -1) power = -1;
+    if (power > 1) power = 1;
+
     int pwmPower = (int)(rightStallPower + power * (maxPower - rightStallPower));
 
     if (power > 0) {
@@ -19,6 +27,9 @@ void runRightMotor(double power) {
 }
 
 void runLeftMotor(double power) {
+    if (power < -1) power = -1;
+    if (power > 1) power = 1;
+
     int pwmPower = (int)(leftStallPower + power * (maxPower - leftStallPower));
 
     if (power > 0) {
@@ -31,4 +42,13 @@ void runLeftMotor(double power) {
         ledcWrite(1, 0);
         ledcWrite(2, 0);
     }
+}
+
+void normalizeSpeeds() {
+    if (true) {
+        //
+    }
+}
+
+void runMotors(double angle) {
 }
