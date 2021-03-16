@@ -13,8 +13,7 @@ void Navigation() {
     if (currentTime < lastTime + USinterval) return;
 
     int distance = getDistance();
-
-    }
+}
 
 int getDistance() {  // Call every 50 ms
 
@@ -48,7 +47,7 @@ boolean getIRData() {
 
     if (Serial2.available() > 0) {   // check for incoming data
         valPulled = Serial2.read();  // read the incoming byte
-        lastTime = currentTime;  // capture time last byte was received
+        lastTime = currentTime;      // capture time last byte was received
     } else {
         // check to see if elapsed time exceeds allowable timeout
         if (currentTime - lastTime > timeout) {
