@@ -44,11 +44,9 @@ void runLeftMotor(double power) {
     }
 }
 
-void normalizeSpeeds() {
-    if (true) {
-        //
-    }
-}
-
+//should only be called every 1 ms i think
 void runMotors(double angle) {
+    //Calculate desired speed delta
+    //Calculate power needed to get to those speeds (feedback)
+    //call left and right motors at those speeds
 }
