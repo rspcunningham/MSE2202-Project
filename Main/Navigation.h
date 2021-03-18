@@ -1,20 +1,3 @@
-
-
-void Navigation() {
-    static long currentTime;
-    static long lastTime;
-    const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
-    boolean collision = getIRData();
-
-    if (collision) {
-        //Will run if TSOP sensor goes off
-    }
-
-    if (currentTime < lastTime + USinterval) return;
-
-    int distance = getDistance();
-}
-
 int getDistance() {  // Call every 50 ms
 
     long duration;
@@ -59,4 +42,19 @@ boolean getIRData() {
         return true;
     else
         return false;
+}
+
+void Navigation() {
+    static long currentTime;
+    static long lastTime;
+    const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
+    boolean collision = getIRData();
+
+    if (collision) {
+        //Will run if TSOP sensor goes off
+    }
+
+    if (currentTime < lastTime + USinterval) return;
+
+    int distance = getDistance();
 }
