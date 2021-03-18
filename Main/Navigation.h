@@ -7,32 +7,6 @@ struct mapPoint {
     double distance;
 } mapPoint;
 
-void Navigation() {
-    static long currentTime;
-    static long lastTime;
-    const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
-
-    currentTime = micros();
-
-    boolean collision = getIRData();
-
-    if (collision) {
-        //Will run if TSOP sensor goes off
-    }
-
-    if (currentTime < lastTime + USinterval) return;
-
-    //Move servo to new position
-
-    //time of flight from ultrasound
-    long duration = getTOF();
-    double distance = duration * 0.0343 / 2;
-
-    long measureTime = currentTime - duration;
-
-    lastTime = currentTime; 
-}
-
 //sends ultrasound pulse, receives echo, calculates and returns time of flight
 int getTOF() {  // Call every 50 ms
 
@@ -77,4 +51,31 @@ boolean getIRData() {
         return true;
     else
         return false;
+}
+
+
+void Navigation() {
+    static long currentTime;
+    static long lastTime;
+    const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
+
+    currentTime = micros();
+
+    boolean collision = getIRData();
+
+    if (collision) {
+        //Will run if TSOP sensor goes off
+    }
+
+    if (currentTime < lastTime + USinterval) return;
+
+    //Move servo to new position
+
+    //time of flight from ultrasound
+    long duration = getTOF();
+    double distance = duration * 0.0343 / 2;
+
+    long measureTime = currentTime - duration;
+
+    lastTime = currentTime; 
 }

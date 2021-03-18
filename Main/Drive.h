@@ -2,10 +2,6 @@ int maxPower = 255;
 int rightStallPower = 120;
 int leftStallPower = 120;
 
-const int samples = 5;
-uint32_t leftEncHist[samples + 1] = {0};
-uint32_t rightEncHist[samples + 1] = {0};
-long timeHist[samples + 1] = {0};
 
 void Drive() {
     
