@@ -1,11 +1,18 @@
-
+struct mapPoint {
+    //time in micros that this data point was collected
+    long time;
+    //angle with respect to robot that this distance is measured
+    double angle;
+    //distance measurement
+    double distance;
+} mapPoint;
 
 void Navigation() {
     static long currentTime;
     static long lastTime;
     const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
 
-    currentTime = millis();
+    currentTime = micros();
 
     boolean collision = getIRData();
 
@@ -20,6 +27,8 @@ void Navigation() {
     //time of flight from ultrasound
     long duration = getTOF();
     double distance = duration * 0.0343 / 2;
+
+    long measureTime = currentTime - duration;
 
     lastTime = currentTime; 
 }

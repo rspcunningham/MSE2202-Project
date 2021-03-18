@@ -16,7 +16,7 @@ void runRightMotor(double power) {
     if (power < -1) power = -1;
     if (power > 1) power = 1;
 
-    int pwmPower = (int)(rightStallPower + power * (maxPower - rightStallPower));
+    int pwmPower = (int)(rightStallPower + abs(power) * (maxPower - rightStallPower));
 
     if (power > 0) {
         ledcWrite(3, 0);
@@ -34,7 +34,7 @@ void runLeftMotor(double power) {
     if (power < -1) power = -1;
     if (power > 1) power = 1;
 
-    int pwmPower = (int)(leftStallPower + power * (maxPower - leftStallPower));
+    int pwmPower = (int)(leftStallPower + abs(power) * (maxPower - leftStallPower));
 
     if (power > 0) {
         ledcWrite(1, pwmPower);
