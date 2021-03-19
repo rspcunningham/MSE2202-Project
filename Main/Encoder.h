@@ -11,12 +11,6 @@
 
 //---------------------------------------------------------------------------
 
-const int samples = 5;
-uint32_t leftEncHist[samples + 1] = {0};
-uint32_t rightEncHist[samples + 1] = {0};
-long timeHist[samples + 1] = {0};
-
-
 volatile boolean ENC_btLeftEncoderADataFlag;
 volatile boolean ENC_btLeftEncoderBDataFlag;
 volatile boolean ENC_btRightEncoderADataFlag;

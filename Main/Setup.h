@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include "_Pinout.h"
 
-#include "Encoder.h"
 #include "Climbing.h"
 #include "Drive.h"
 #include "Navigation.h"
+#include "Encoder.h"
 
 /* Example code for HC-SR04 ultrasonic distance sensor with Arduino. No library required. More info: https://www.makerguides.com */
 

@@ -6,7 +6,11 @@
                 "/Users/robin/Library/Arduino15/packages/esp32/tools/**",
                 "/Users/robin/Documents/Arduino/libraries/**",
                 "/Applications/Arduino.app/Contents/Java/libraries/**",
-                "/Users/robin/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/**"
+                "/Users/robin/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/**",
+                "C:\\Users\\micha\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.5\\**",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\**",
+                "C:\\Users\\micha\\OneDrive\\Documents\\Arduino\\libraries\\**",
+                "C:\\Users\\micha\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\**"
             ],
             "forcedInclude": [],
             "defines": [

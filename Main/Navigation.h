@@ -1,14 +1,4 @@
-struct mapPoint {
-    //time in micros that this data point was collected
-    long time;
-    //angle with respect to robot that this distance is measured
-    double angle;
-    //distance measurement
-    double distance;
-} mapPoint;
-
-//sends ultrasound pulse, receives echo, calculates and returns time of flight
-int getTOF() {  // Call every 50 ms
+int getDistance() {  // Call every 50 ms
 
     long duration;
     int distance;
@@ -23,9 +13,10 @@ int getTOF() {  // Call every 50 ms
 
     // Read the echoPin, pulseIn() returns the duration (length of the pulse) in microseconds:
     duration = pulseIn(pinUSecho, HIGH);
+    // Calculate the distance:
+    distance = duration * 0.034 / 2;
 
-    return duration;
-    
+    return distance;
 }
 
 boolean getIRData() {
@@ -53,14 +44,10 @@ boolean getIRData() {
         return false;
 }
 
-
 void Navigation() {
     static long currentTime;
     static long lastTime;
     const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
-
-    currentTime = micros();
-
     boolean collision = getIRData();
 
     if (collision) {
@@ -69,13 +56,5 @@ void Navigation() {
 
     if (currentTime < lastTime + USinterval) return;
 
-    //Move servo to new position
-
-    //time of flight from ultrasound
-    long duration = getTOF();
-    double distance = duration * 0.0343 / 2;
-
-    long measureTime = currentTime - duration;
-
-    lastTime = currentTime; 
+    int distance = getDistance();
 }
