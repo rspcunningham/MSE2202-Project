@@ -1,14 +1,23 @@
 #include <Arduino.h>
 #include "_Pinout.h"
 
+static boolean running = true;
+static boolean printReady = true;
+
+const int resolution = 5;
+
+struct mapPoint {
+    unsigned long time;
+    int angle;
+    double distance;
+};
+
+static mapPoint distMap[180];
+
 #include "Climbing.h"
 #include "Drive.h"
-#include "Navigation.h"
 #include "Encoder.h"
-
-/* Example code for HC-SR04 ultrasonic distance sensor with Arduino. No library required. More info: https://www.makerguides.com */
-
-// Define variables:
+#include "Navigation.h"
 
 void setup() {
     // Define inputs and outputs:
@@ -33,4 +42,8 @@ void setup() {
     ledcSetup(3, 20000, 8);
     ledcSetup(4, 20000, 8);
 
+    ledcAttachPin(pinSonarServo, 6);
+    ledcSetup(6, 50, 16);
+
+    setServo(0);
 }

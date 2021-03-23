@@ -33,8 +33,8 @@ number    pins         description                        Brd Jumpers /Labels   
           30            VIN                               PWR 5V t 7V                                                                          PWR 5V to 7V
 */
 
-#define pinUStrig      22   //For trigger part of Sonar
-#define pinUSecho      23   //For the echo part of Sonar
+#define pinUStrig      25  //grey lead 
+#define pinUSecho      23  //white lead
 #define pinIR          16
 #define pinMotorRightA 19
 #define pinMotorRightB 12
@@ -44,3 +44,4 @@ number    pins         description                        Brd Jumpers /Labels   
 #define pinEncRightB   13
 #define pinEncLeftA    17
 #define pinEncLeftB    5
+#define pinSonarServo  15

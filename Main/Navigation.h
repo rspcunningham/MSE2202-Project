@@ -1,3 +1,8 @@
+void setServo(const int angle) {
+    long dutyCycle = map(angle, 0, 180, 1675, 8050);
+    ledcWrite(6, dutyCycle);
+}
+
 int getTOF() {  // Call every 50 ms
 
     long duration;
@@ -14,7 +19,6 @@ int getTOF() {  // Call every 50 ms
     // Read the echoPin, pulseIn() returns the duration (length of the pulse) in microseconds:
     duration = pulseIn(pinUSecho, HIGH);
     // Calculate the distance:
-    
 
     return duration;
 }
@@ -49,13 +53,33 @@ void Navigation() {
     static long lastTime;
     const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
     boolean collision = getIRData();
+    static int dir;
+    static int angle;
+
+    if (dir == 0) dir = 1;  //set initial value
+
+    currentTime = millis();
 
     if (collision) {
         //Will run if TSOP sensor goes off
     }
 
     if (currentTime < lastTime + USinterval) return;
+    lastTime = currentTime;
+    setServo(angle);
 
     long duration = getTOF();
     double distance = duration * 0.0343 / 2;
+
+    Serial.println(distance);
+/*
+    distMap[angle].time = currentTime;
+    distMap[angle].angle = angle;
+    distMap[angle].distance = distance;
+*/
+    angle += resolution * dir;
+
+    if (angle > 180) dir = -1;
+    //if (angle > 180) running = false;
+    if (angle < 0) dir = 1;
 }
