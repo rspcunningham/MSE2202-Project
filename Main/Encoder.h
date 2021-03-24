@@ -361,5 +361,4 @@ double getLeftSpeed() {
   return speed / samples;
 }
 
-
 #endif
