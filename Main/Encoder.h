@@ -333,32 +333,4 @@ void updateEncoder(long currentLoopTime) {
 
 }
 
-double getRightSpeed() {
-
-  double speed = 0;
-
-  for (int i = 1; i < samples; i++) {
-    int d = rightEncHist[i] - rightEncHist[i - 1];
-    int t = timeHist[i] - timeHist[i - 1];
-    if (t == 0) continue;
-    speed += (double)d / t;
-  }
-
-  return speed / samples;
-}
-
-double getLeftSpeed() {
-
-  double speed = 0;
-
-  for (int i = 1; i < samples; i++) {
-    int d = leftEncHist[i] - leftEncHist[i - 1];
-    int t = timeHist[i] - timeHist[i - 1];
-    if (t == 0) continue;
-    speed += (double)d / t;
-  }
-
-  return speed / samples;
-}
-
 #endif
