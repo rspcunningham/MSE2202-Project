@@ -1,5 +1,9 @@
-double gainP = 2;
-double gainI = 0.5;
+double averageSpeed;
+
+double gainP = 2; // % per m/s
+double gainI = 0.5; // % per m
+double gainD = 0.5; // % per m/s^2
+double gainA = 0.005; // ticks/s per degree
 
 int maxPower = 255;
 int rightStallPower = 120;
@@ -12,6 +16,10 @@ long timeHist[samples + 1] = {0};
 
 double deltaRegisterRight;
 double deltaRegisterLeft;
+double deltaLastRight;
+double deltaLastLeft;
+double deltaDeltaRight;
+double deltaDeltaLeft;
 
 double getRightSpeed() {
 
@@ -80,24 +88,35 @@ void runLeftMotor(double power) {
 }
 
 //should only be called every 1 ms i think
+//runs motors at appropriate speed differential given an angle
+//angle should be between -90 and +90; positive angles to the right of centre, negative angles to the left
+// angle of 0 indicates straight on. left and right speeds the same
 void runMotors(double angle) {
     //Calculate desired speed delta
+    double speedDelta = angle * gainA;
 
-    double targetRight;
-    double targetLeft;
+    double targetRight = averageSpeed - speedDelta/2;
+    double targetLeft = averageSpeed + speedDelta/2;
+
+    //Calculate power needed to get to those speeds (feedback)
+
     double currentRight = getRightSpeed();
     double currentLeft = getLeftSpeed();
 
     double deltaRight = currentRight - targetRight;
     double deltaLeft = currentLeft - targetLeft;
 
+    deltaDeltaRight = deltaRight - deltaLastRight;
+    deltaDeltaLeft = deltaLeft - deltaLastLeft;
+
     deltaRegisterRight += deltaRight;
     deltaRegisterLeft += deltaLeft;
 
-    //Calculate power needed to get to those speeds (feedback)
+    deltaLastRight = deltaRight;
+    deltaLastLeft = deltaLeft;
 
-    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI; //power should be between 0 and 1
-    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI;
+    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI + deltaDeltaRight * gainD; //power should be between 0 and 1
+    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI + deltaDeltaLeft * gainD;;
 
     //call left and right motors at those speeds
 }
