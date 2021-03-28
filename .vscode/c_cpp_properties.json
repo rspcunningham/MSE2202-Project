@@ -2,48 +2,6 @@
     "version": 4,
     "configurations": [
         {
-            "name": "Mac",
-            "compilerPath": "/usr/bin/clang",
-            "compilerArgs": [],
-            "intelliSenseMode": "macos-clang-x64",
-            "includePath": [
-                "/Users/robin/Library/Arduino15/packages/esp32/tools/**",
-                "/Users/robin/Documents/Arduino/libraries/**",
-                "/Applications/Arduino.app/Contents/Java/libraries/**",
-                "/Users/robin/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/**",
-                "C:\\Users\\micha\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.5\\**",
-                "C:\\Program Files (x86)\\Arduino\\libraries\\**",
-                "C:\\Users\\micha\\OneDrive\\Documents\\Arduino\\libraries\\**",
-                "C:\\Users\\micha\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\**"
-            ],
-            "forcedInclude": [],
-            "cStandard": "c11",
-            "cppStandard": "c++98",
-            "defines": [
-                "USBCON"
-            ]
-        },
-        {
-            "name": "Win32",
-            "compilerPath": "",
-            "compilerArgs": [],
-            "intelliSenseMode": "",
-            "includePath": [
-                "C:\\Users\\micha\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\**",
-                "C:\\Users\\micha\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.5\\**",
-                "C:\\Users\\micha\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
-                "C:\\Users\\micha\\OneDrive\\Documents\\Arduino\\libraries\\**",
-                "C:\\Program Files (x86)\\Arduino\\libraries\\**",
-                "C:\\Users\\micha\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\**"
-            ],
-            "forcedInclude": [],
-            "cStandard": "",
-            "cppStandard": "",
-            "defines": [
-                "USBCON"
-            ]
-        },
-        {
             "name": "Arduino",
             "compilerPath": "/Users/robin/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/bin/xtensa-esp32-elf-g++",
             "compilerArgs": [
