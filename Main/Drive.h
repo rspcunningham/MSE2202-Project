@@ -1,3 +1,5 @@
+double gainP = 2;
+double gainI = 0.5;
 
 int maxPower = 255;
 int rightStallPower = 120;
@@ -92,9 +94,10 @@ void runMotors(double angle) {
     deltaRegisterRight += deltaRight;
     deltaRegisterLeft += deltaLeft;
 
-    
-
     //Calculate power needed to get to those speeds (feedback)
+
+    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI; //power should be between 0 and 1
+    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI;
 
     //call left and right motors at those speeds
 }
