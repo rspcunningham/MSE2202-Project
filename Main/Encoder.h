@@ -321,16 +321,15 @@ void ENC_ClearRightOdometer() {
 }
 
 void updateEncoder(long currentLoopTime) {
-  for (int i = 0; i < samples; i++) {
-    rightEncHist[i] = rightEncHist[i + 1];
-    leftEncHist[i] = leftEncHist[i + 1];
-    timeHist[i] = timeHist[i + 1];
-  }
+    for (int i = 0; i < samples; i++) {
+        rightEncHist[i] = rightEncHist[i + 1];
+        leftEncHist[i] = leftEncHist[i + 1];
+        timeHist[i] = timeHist[i + 1];
+    }
 
-  rightEncHist[samples] = ENC_vi32RightOdometer;
-  leftEncHist[samples] = ENC_vi32LeftOdometer;
-  timeHist[samples] = currentLoopTime;
-
+    rightEncHist[samples] = ENC_vi32RightOdometer;
+    leftEncHist[samples] = ENC_vi32LeftOdometer;
+    timeHist[samples] = currentLoopTime;
 }
 
 #endif

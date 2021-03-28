@@ -72,7 +72,7 @@ void Navigation() {
     double distance = duration * 0.0343 / 2;
 
     Serial.println(distance);
-/*
+    /*
     distMap[angle].time = currentTime;
     distMap[angle].angle = angle;
     distMap[angle].distance = distance;
