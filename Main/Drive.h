@@ -1,3 +1,4 @@
+
 int maxPower = 255;
 int rightStallPower = 120;
 int leftStallPower = 120;
@@ -9,15 +10,6 @@ long timeHist[samples + 1] = {0};
 
 double deltaRegisterRight;
 double deltaRegisterLeft;
-
-
-
-
-
-
-
-
-
 
 double getRightSpeed() {
 
@@ -99,6 +91,8 @@ void runMotors(double angle) {
 
     deltaRegisterRight += deltaRight;
     deltaRegisterLeft += deltaLeft;
+
+    
 
     //Calculate power needed to get to those speeds (feedback)
 
