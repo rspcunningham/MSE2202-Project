@@ -14,8 +14,8 @@ number    pins         description                        Brd Jumpers /Labels   
 21        11            GPIO21                            D21/I2C_DA
 3         12            GPIO3/RX0                         RX0
 1         13            GPIO1//TX0                        TX0
-22        14            GPIO22/RTS1                       D22/I2C_CLK
-23        15            GPIO23                            D23 (has connections in both 5V and 3V areas)
+22        14            GPIO22/RTS1                       D22/I2C_CLK                                                                       
+23        15            GPIO23                            D23 (has connections in both 5V and 3V areas)                                        Ultrasound echo
           16            EN                                JP4 (Labeled - RST) for reseting ESP32
 36        17            GPI36/VP/AD1_0                    AD0
 39        18            GPI39/VN/AD1_3/                   AD3
@@ -33,7 +33,7 @@ number    pins         description                        Brd Jumpers /Labels   
           30            VIN                               PWR 5V t 7V                                                                          PWR 5V to 7V
 */
 
-#define pinUStrig      25  //grey lead 
+#define pinUStrig      26  //grey lead
 #define pinUSecho      23  //white lead
 #define pinIR          16
 #define pinMotorRightA 19
@@ -45,3 +45,5 @@ number    pins         description                        Brd Jumpers /Labels   
 #define pinEncLeftA    17
 #define pinEncLeftB    5
 #define pinSonarServo  15
+#define pinWinch       32
+#define pinLEDs        25
