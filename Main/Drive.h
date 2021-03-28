@@ -10,6 +10,44 @@ long timeHist[samples + 1] = {0};
 double deltaRegisterRight;
 double deltaRegisterLeft;
 
+
+
+
+
+
+
+
+
+
+double getRightSpeed() {
+
+  double speed = 0;
+
+  for (int i = 1; i < samples; i++) {
+    int d = rightEncHist[i] - rightEncHist[i - 1];
+    int t = timeHist[i] - timeHist[i - 1];
+    if (t == 0) continue;
+    speed += (double)d / t;
+  }
+
+  return speed / samples;
+}
+
+double getLeftSpeed() {
+
+  double speed = 0;
+
+  for (int i = 1; i < samples; i++) {
+    int d = leftEncHist[i] - leftEncHist[i - 1];
+    int t = timeHist[i] - timeHist[i - 1];
+    if (t == 0) continue;
+    speed += (double)d / t;
+  }
+
+  return speed / samples;
+}
+
+
 //Pass value from -1 to 1 to go from full reverse to full forwards
 void runRightMotor(double power) {
     if (power < -1) power = -1;
