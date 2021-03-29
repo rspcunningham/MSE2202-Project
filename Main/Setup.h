@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "_Pinout.h"
 
-static boolean running = true;
+static boolean running = false;
 static boolean printReady = true;
 
 const int resolution = 5;
