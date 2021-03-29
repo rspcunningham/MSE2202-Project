@@ -4,19 +4,22 @@
 #include "_Pinout.h"
 
 static boolean running = false;
-static boolean printReady = true;
+static boolean climbing = false;
 
 const int resolution = 10;
 
-int robotSequence=0;
+int robotSequence = 0;
 
+/*
 struct mapPoint {
     unsigned long time;
     int angle;
     double distance;
 };
+*/
 
-static mapPoint distMap[180];
+static double distMapActive[180]; //map that currently has values being added
+static double distMapFull[180]; //most recent mapping that has been completed
 
 Adafruit_NeoPixel SmartLEDs(2, pinSmartLED, NEO_GRB + NEO_KHZ400);
 
@@ -34,6 +37,11 @@ void setup() {
     pinMode(pinUSecho, INPUT);
     pinMode(pinStatusLED, OUTPUT);
     pinMode(pinButton, INPUT_PULLUP);
+    pinMode(pinWinch, OUTPUT);
+    pinMode(pinEncLeftA, INPUT_PULLUP);
+    pinMode(pinEncLeftB, INPUT_PULLUP);
+    pinMode(pinEncRightA, INPUT_PULLUP);
+    pinMode(pinEncRightB, INPUT_PULLUP);
 
     //Begin Serial communication at a baudrate of 9600:
     Serial.begin(115200);
@@ -53,13 +61,7 @@ void setup() {
     ledcSetup(3, 20000, 8);
     ledcSetup(4, 20000, 8);
 
-    //set encoder pin modes
-    pinMode(pinEncLeftA, INPUT_PULLUP);
-    pinMode(pinEncLeftB, INPUT_PULLUP);
-    pinMode(pinEncRightA, INPUT_PULLUP);
-    pinMode(pinEncRightB, INPUT_PULLUP);
-
-    // enable GPIO interrupt on change
+    // setup encoder interrupts
     attachInterrupt(pinEncLeftA, ENC_isrLeftA, CHANGE);
     attachInterrupt(pinEncLeftB, ENC_isrLeftB, CHANGE);
     attachInterrupt(pinEncRightA, ENC_isrRightA, CHANGE);
