@@ -1,5 +1,5 @@
 
-void flashHeartbeatLED() {
+void flashStatusLED() {
 
   static long currentTime = millis();
   static long lastTime;

@@ -1,6 +1,19 @@
+#include <Adafruit_NeoPixel.h>
+
 #include "Setup.h"
 
 void loop() {
+    static long currentTime = millis();
+    static long lastTime;
+    int interval = 1;
+
+    flashStatusLED();
+
+    if (currentTime < lastTime + interval) return;
+    if (running) {
+    }
+
+    /*
     if (running)
         Navigation();
     else if (printReady) {
@@ -11,6 +24,7 @@ void loop() {
         }
         printReady = false;
     }
+    */
 }
 
 //test
