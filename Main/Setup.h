@@ -16,9 +16,10 @@ struct mapPoint {
 
 static mapPoint distMap[180];
 
-#include "Sequence.h"
+
 #include "Climbing.h"
 #include "Drive.h"
+#include "Sequence.h"
 #include "Encoder.h"
 #include "Navigation.h"
 

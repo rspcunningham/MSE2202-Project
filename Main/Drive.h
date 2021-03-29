@@ -1,4 +1,4 @@
-double averageSpeed;
+double averageSpeed=100;
 
 double gainP = 2; // % per m/s
 double gainI = 0.5; // % per m
@@ -119,4 +119,10 @@ void runMotors(double angle) {
     double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI + deltaDeltaLeft * gainD;;
 
     //call left and right motors at those speeds
+    Serial.print("Right Motor Power: ");
+    Serial.print(powerRight);
+    Serial.print("  Left Motor Power: ");
+    Serial.println(powerLeft);
+    runRightMotor(powerRight);
+    runLeftMotor(powerLeft);
 }
