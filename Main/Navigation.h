@@ -3,6 +3,27 @@ void setServo(const int angle) {
     ledcWrite(6, dutyCycle);
 }
 
+void copyFullMap() {
+    for (int i = 0; i < 180; i += resolution) {
+        distMapFull[i] = distMapActive[i];
+    }
+}
+
+int findEdge() {
+    double gap;
+    int angle;
+
+    for (int i = 0; i < 180 - resolution; i += resolution) {
+        double tempGap = distMapFull[i] - distMapFull[i + 1];
+        if (abs(tempGap) > abs(gap)) {
+            gap = tempGap;
+            angle = i + 1;
+        }
+    }
+
+    return angle;
+}
+
 int getTOF() {  // Call every 50 ms
 
     long duration;
@@ -28,7 +49,7 @@ boolean getIRData() {
     const uint8_t valTarget = 0x55;
     const long timeout = 220;
     static long lastTime;
-    static long currentTime;
+    long currentTime;
 
     currentTime = millis();
 
@@ -49,7 +70,7 @@ boolean getIRData() {
 }
 
 void Navigation() {
-    static long currentTime;
+    long currentTime;
     static long lastTime;
     const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
     boolean collision = getIRData();
@@ -71,15 +92,16 @@ void Navigation() {
     long duration = getTOF();
     double distance = duration * 0.0343 / 2;
 
-    Serial.println(distance);
-    /*
-    distMap[angle].time = currentTime;
-    distMap[angle].angle = angle;
-    distMap[angle].distance = distance;
-*/
-    //angle += resolution * dir;
-    moveRobotSequence(&angle);
-    if (angle > 180) dir = -1;
-    //if (angle > 180) running = false;
-    if (angle < 0) dir = 1;
+    distMapActive[angle] = distance;
+
+    angle += resolution * dir;
+    //moveRobotSequence(&angle);
+
+    if (angle > 180) {
+        dir = -1;
+        copyFullMap();
+    } else if (angle < 0) {
+        dir = 1;
+        copyFullMap();
+    }
 }

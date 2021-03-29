@@ -46,4 +46,6 @@ number    pins         description                        Brd Jumpers /Labels   
 #define pinEncLeftB    5
 #define pinSonarServo  15
 #define pinWinch       32
-#define pinLEDs        25
+#define pinSmartLED    25
+#define pinStatusLED   2
+#define pinButton      27

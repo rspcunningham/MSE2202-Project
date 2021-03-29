@@ -1,10 +1,3 @@
-/*
- Western Engineering base code
-2021 02 04 E J Porter
-
- encoder implement
-  
- */
 
 #ifndef ENCODER_H
 #define ENCODER_H 1
@@ -60,6 +53,16 @@ boolean ENC_ISMotorRunning() {
     }
 }
 
+/*
+void ENC_SetDistance(int32_t i32LeftDistance, int32_t i32RightDistance) {
+    ENC_vi32LeftOdometerCompare = ENC_vi32LeftOdometer + i32LeftDistance;
+    ENC_vi32RightOdometerCompare = ENC_vi32RightOdometer + i32RightDistance;
+    ENC_btLeftMotorRunningFlag = true;
+    ENC_btRightMotorRunningFlag = true;
+    ui8LeftWorkingSpeed = cui8StartingSpeed;
+    ui8RightWorkingSpeed = cui8StartingSpeed;
+}
+*/
 //Encoder interrupt service routines - entered every change in in encoder pin H-> L and L ->H
 //---------------------------------------------------------------------------------------------
 void IRAM_ATTR ENC_isrLeftA() {
@@ -89,16 +92,16 @@ void IRAM_ATTR ENC_isrLeftA() {
 
     if (ENC_btLeftMotorRunningFlag) {
         if (ENC_vi32LeftOdometer == ENC_vi32LeftOdometerCompare) {
-            ENC_btLeftMotorRunningFlag = false;
+            /*ENC_btLeftMotorRunningFlag = false;
             ENC_btRightMotorRunningFlag = false;
-            digitalWrite(pinMotorLeftA, HIGH);
-            digitalWrite(pinMotorLeftB, HIGH);
-            digitalWrite(pinMotorRightA, HIGH);
-            digitalWrite(pinMotorRightB, HIGH);
+            digitalWrite(ciMotorLeftA, HIGH);
+            digitalWrite(ciMotorLeftB, HIGH);
+            digitalWrite(ciMotorRightA, HIGH);
+            digitalWrite(ciMotorRightB, HIGH);
             ledcWrite(2, 255);
             ledcWrite(1, 255);  //stop with braking Left motor
             ledcWrite(3, 255);
-            ledcWrite(4, 255);  //stop with braking Right motor
+            ledcWrite(4, 255);  //stop with braking Right motor*/
         }
     }
 }
@@ -127,16 +130,16 @@ void IRAM_ATTR ENC_isrLeftB() {
     }
     if (ENC_btLeftMotorRunningFlag) {
         if (ENC_vi32LeftOdometer == ENC_vi32LeftOdometerCompare) {
-            ENC_btLeftMotorRunningFlag = false;
+            /*  ENC_btLeftMotorRunningFlag = false;
             ENC_btRightMotorRunningFlag = false;
-            digitalWrite(pinMotorLeftA, HIGH);
-            digitalWrite(pinMotorLeftB, HIGH);
-            digitalWrite(pinMotorRightA, HIGH);
-            digitalWrite(pinMotorRightB, HIGH);
+            digitalWrite(ciMotorLeftA, HIGH);
+            digitalWrite(ciMotorLeftB, HIGH);
+            digitalWrite(ciMotorRightA, HIGH);
+            digitalWrite(ciMotorRightB, HIGH);
             ledcWrite(2, 255);
             ledcWrite(1, 255);  //stop with braking Left motor
             ledcWrite(3, 255);
-            ledcWrite(4, 255);  //stop with braking Right motor
+            ledcWrite(4, 255);  //stop with braking Right motor*/
         }
     }
 }
@@ -165,16 +168,16 @@ void IRAM_ATTR ENC_isrRightA() {
     }
     if (ENC_btRightMotorRunningFlag) {
         if (ENC_vi32RightOdometer == ENC_vi32RightOdometerCompare) {
-            ENC_btLeftMotorRunningFlag = false;
+            /* ENC_btLeftMotorRunningFlag = false;
             ENC_btRightMotorRunningFlag = false;
-            digitalWrite(pinMotorLeftA, HIGH);
-            digitalWrite(pinMotorLeftB, HIGH);
-            digitalWrite(pinMotorRightA, HIGH);
-            digitalWrite(pinMotorRightB, HIGH);
+            digitalWrite(ciMotorLeftA, HIGH);
+            digitalWrite(ciMotorLeftB, HIGH);
+            digitalWrite(ciMotorRightA, HIGH);
+            digitalWrite(ciMotorRightB, HIGH);
             ledcWrite(2, 255);
             ledcWrite(1, 255);  //stop with braking Left motor
             ledcWrite(3, 255);
-            ledcWrite(4, 255);  //stop with braking Right motor
+            ledcWrite(4, 255);  //stop with braking Right motor */
         }
     }
 }
@@ -203,38 +206,23 @@ void IRAM_ATTR ENC_isrRightB() {
     }
     if (ENC_btRightMotorRunningFlag) {
         if (ENC_vi32RightOdometer == ENC_vi32RightOdometerCompare) {
-            ENC_btLeftMotorRunningFlag = false;
+            /*ENC_btLeftMotorRunningFlag = false;
             ENC_btRightMotorRunningFlag = false;
-            digitalWrite(pinMotorLeftA, HIGH);
-            digitalWrite(pinMotorLeftB, HIGH);
-            digitalWrite(pinMotorRightA, HIGH);
-            digitalWrite(pinMotorRightB, HIGH);
+            digitalWrite(ciMotorLeftA, HIGH);
+            digitalWrite(ciMotorLeftB, HIGH);
+            digitalWrite(ciMotorRightA, HIGH);
+            digitalWrite(ciMotorRightB, HIGH);
             ledcWrite(2, 255);
             ledcWrite(1, 255);  //stop with braking Left motor
             ledcWrite(3, 255);
-            ledcWrite(4, 255);  //stop with braking Right motor
+            ledcWrite(4, 255);  //stop with braking Right motor*/
         }
     }
 }
 //---------------------------------------------------------------------------------------------
 
 void ENC_Init() {
-    //set pin modes
-    pinMode(pinEncLeftA, INPUT_PULLUP);
-    pinMode(pinEncLeftB, INPUT_PULLUP);
-    pinMode(pinEncRightA, INPUT_PULLUP);
-    pinMode(pinEncRightB, INPUT_PULLUP);
-
-    // enable GPIO interrupt on change
-    attachInterrupt(pinEncLeftA, ENC_isrLeftA, CHANGE);
-    attachInterrupt(pinEncLeftB, ENC_isrLeftB, CHANGE);
-    attachInterrupt(pinEncRightA, ENC_isrRightA, CHANGE);
-    attachInterrupt(pinEncRightB, ENC_isrRightB, CHANGE);
-
-    ENC_btLeftMotorRunningFlag = false;
-    ENC_btRightMotorRunningFlag = false;
-
-    //check to see if calibration is in eeprom and retreive
+        //check to see if calibration is in eeprom and retreive
 }
 
 void ENC_Disable() {
