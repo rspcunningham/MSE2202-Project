@@ -20,12 +20,12 @@ static mapPoint distMap[180];
 
 Adafruit_NeoPixel SmartLEDs(2, pinSmartLED, NEO_GRB + NEO_KHZ400);
 
-#include "Sequence.h"
 #include "Climbing.h"
 #include "Drive.h"
 #include "Encoder.h"
 #include "Navigation.h"
 #include "Utilities.h"
+#include "Sequence.h"
 
 
 void setup() {
