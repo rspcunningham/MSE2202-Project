@@ -77,8 +77,8 @@ void Navigation() {
     distMap[angle].angle = angle;
     distMap[angle].distance = distance;
 */
-    angle += resolution * dir;
-
+    //angle += resolution * dir;
+    moveRobotSequence(&angle);
     if (angle > 180) dir = -1;
     //if (angle > 180) running = false;
     if (angle < 0) dir = 1;
