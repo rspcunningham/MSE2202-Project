@@ -3,7 +3,9 @@
 void loop() {
     long currentTime = millis();
     static long lastTime;
+    static long lastTime2;
     int interval = 1;
+    int hold = 2000;
     int targetAngle;
 
     flashStatusLED();
@@ -11,6 +13,7 @@ void loop() {
     ENC_Averaging();
 
     if (currentTime < lastTime + interval) return;
+    lastTime = currentTime;
 
     updateEncoder(currentTime);
 
@@ -24,30 +27,36 @@ void loop() {
             return;
         }
 
-        Navigation();
+        //Navigation();
 
         //Calculate target angle
         switch (robotSequence) {
-            case 0:  //getting to first corner of obstacle
-                targetAngle = findEdge();
-                //some kind of end condition to know it has passed the edge
+            case 0:  //2 second hold
+                if (lastTime2 == 0) lastTime2 = currentTime;
+                if (currentTime < lastTime2 + hold) return;
+                robotSequence = 1;
                 break;
-            case 1:  //getting to second corner of obstacle
-                targetAngle = findEdge();
+            case 1:  //getting around obstacle
+                //targetAngle = findEdge();
+                targetAngle = 0;
+                runMotors(targetAngle);
                 //some kind of end condition to know it has passed the edge
                 break;
             case 2:  //getting to the wall where the rope is
-                if (distMapFull[90] < 5) climbing = true; //once the wall is within 5 cm, start to climb
-                else if (distMapFull[0] < 5) targetAngle = 5; // if the obstacle is too close to the left, turn right a bit
-                else if (distMapFull[0] > 10) targetAngle = -5; //if the obstacle is too far from the left, turn left a bit
+                if (distMapFull[90] < 5)
+                    climbing = true;  //once the wall is within 5 cm, start to climb
+                else if (distMapFull[0] < 5)
+                    targetAngle = 5;  // if the obstacle is too close to the left, turn right a bit
+                else if (distMapFull[0] > 10)
+                    targetAngle = -5;  //if the obstacle is too far from the left, turn left a bit
                 break;
         }
-
-        runMotors(targetAngle);
 
     } else {
         runRightMotor(0);
         runLeftMotor(0);
+        robotSequence = 0;
+        lastTime2 = 0;
         deltaRegisterRight = 0;
         deltaRegisterLeft = 0;
         SmartLEDs.clear();

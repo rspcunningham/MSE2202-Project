@@ -73,7 +73,7 @@ void Navigation() {
     long currentTime;
     static long lastTime;
     const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
-    boolean collision = getIRData();
+    //boolean collision = getIRData();
     static int dir;
     static int angle;
 
@@ -81,9 +81,9 @@ void Navigation() {
 
     currentTime = millis();
 
-    if (collision) {
+    //if (collision) {
         //Will run if TSOP sensor goes off
-    }
+    //}
 
     if (currentTime < lastTime + USinterval) return;
     lastTime = currentTime;

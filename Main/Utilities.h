@@ -39,13 +39,13 @@ void buttonHandler() {
     static int lastState;
     static int currentState;
     static long lastTime;
-    int delay = 50;
+    int delayLength = 50;
 
     if (value != lastState) {  // if value has changed
         lastTime = millis();   // reset the debouncing timer
     }
 
-    if ((millis() - lastTime) > delay) {
+    if ((millis() - lastTime) > delayLength) {
         if (value != currentState) {  // if the button state has changed
             currentState = value;     // update current button state
 
