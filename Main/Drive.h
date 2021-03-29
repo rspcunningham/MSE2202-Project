@@ -1,9 +1,9 @@
-double averageSpeed;
+double averageSpeed = 0.2;  //in ticks/ms
 
-double gainP = 2; // % per m/s
-double gainI = 0.5; // % per m
-double gainD = 0.5; // % per m/s^2
-double gainA = 0.005; // ticks/s per degree
+double gainP = 0.1;      // % per ticks/ms
+double gainI = 0.1;    // % per ticks
+double gainD = 1;    // % per ticks/ms^2
+double gainA = 0.005;  // ticks/ms per degree
 
 int maxPower = 255;
 int rightStallPower = 120;
@@ -22,33 +22,30 @@ double deltaDeltaRight;
 double deltaDeltaLeft;
 
 double getRightSpeed() {
+    double speed = 0;
 
-  double speed = 0;
+    for (int i = 1; i < samples; i++) {
+        int d = rightEncHist[i] - rightEncHist[i - 1];
+        int t = timeHist[i] - timeHist[i - 1];
+        if (t == 0) continue;
+        speed += (double)d / t;
+    }
 
-  for (int i = 1; i < samples; i++) {
-    int d = rightEncHist[i] - rightEncHist[i - 1];
-    int t = timeHist[i] - timeHist[i - 1];
-    if (t == 0) continue;
-    speed += (double)d / t;
-  }
-
-  return speed / samples;
+    return speed / samples;
 }
 
 double getLeftSpeed() {
+    double speed = 0;
 
-  double speed = 0;
+    for (int i = 1; i < samples; i++) {
+        int d = leftEncHist[i] - leftEncHist[i - 1];
+        int t = timeHist[i] - timeHist[i - 1];
+        if (t == 0) continue;
+        speed += (double)d / t;
+    }
 
-  for (int i = 1; i < samples; i++) {
-    int d = leftEncHist[i] - leftEncHist[i - 1];
-    int t = timeHist[i] - timeHist[i - 1];
-    if (t == 0) continue;
-    speed += (double)d / t;
-  }
-
-  return speed / samples;
+    return speed / samples;
 }
-
 
 //Pass value from -1 to 1 to go from full reverse to full forwards
 void runRightMotor(double power) {
@@ -87,7 +84,6 @@ void runLeftMotor(double power) {
     }
 }
 
-//should only be called every 1 ms i think
 //runs motors at appropriate speed differential given an angle
 //angle should be between -90 and +90; positive angles to the right of centre, negative angles to the left
 // angle of 0 indicates straight on. left and right speeds the same
@@ -95,16 +91,17 @@ void runMotors(double angle) {
     //Calculate desired speed delta
     double speedDelta = angle * gainA;
 
-    double targetRight = averageSpeed - speedDelta/2;
-    double targetLeft = averageSpeed + speedDelta/2;
+    double targetRight = averageSpeed - speedDelta / 2;
+    double targetLeft = averageSpeed + speedDelta / 2;
 
     //Calculate power needed to get to those speeds (feedback)
 
     double currentRight = getRightSpeed();
     double currentLeft = getLeftSpeed();
 
-    double deltaRight = currentRight - targetRight;
-    double deltaLeft = currentLeft - targetLeft;
+    double deltaRight = targetRight - currentRight;
+    double deltaLeft = targetLeft - currentLeft;
+
 
     deltaDeltaRight = deltaRight - deltaLastRight;
     deltaDeltaLeft = deltaLeft - deltaLastLeft;
@@ -115,8 +112,28 @@ void runMotors(double angle) {
     deltaLastRight = deltaRight;
     deltaLastLeft = deltaLeft;
 
-    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI + deltaDeltaRight * gainD; //power should be between 0 and 1
-    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI + deltaDeltaLeft * gainD;;
+    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI;// + deltaDeltaRight * gainD;  //power should be between 0 and 1
+    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI;// + deltaDeltaLeft * gainD;
+
+    //anti-windup
+
+    if (abs(powerRight) > 1) {
+        powerRight = powerRight / abs(powerRight);
+        deltaRegisterRight -= deltaRight;
+    }
+
+    if (abs(powerLeft) > 1) {
+        powerLeft = powerLeft/ abs(powerLeft);
+        deltaRegisterLeft -= deltaLeft;
+    }
 
     //call left and right motors at those speeds
+/*
+    Serial.print("Left: ");
+    Serial.print(powerLeft);
+    Serial.print(" Right: ");
+    Serial.println(powerRight);
+*/
+    runRightMotor(powerRight);
+    runLeftMotor(powerLeft);
 }

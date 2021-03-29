@@ -28,7 +28,7 @@ boolean getIRData() {
     const uint8_t valTarget = 0x55;
     const long timeout = 220;
     static long lastTime;
-    static long currentTime;
+    long currentTime;
 
     currentTime = millis();
 
@@ -49,7 +49,7 @@ boolean getIRData() {
 }
 
 void Navigation() {
-    static long currentTime;
+    long currentTime;
     static long lastTime;
     const int USinterval = 50;  //how often does the ultrasound make a measurement (in ms)
     boolean collision = getIRData();
