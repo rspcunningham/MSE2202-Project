@@ -14,6 +14,7 @@ struct mapPoint {
 
 static mapPoint distMap[180];
 
+#include "Utilities.h"
 #include "Climbing.h"
 #include "Drive.h"
 #include "Encoder.h"
