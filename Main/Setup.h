@@ -28,6 +28,12 @@ static double distMapFull[180]; //most recent mapping that has been completed
 
 Adafruit_NeoPixel SmartLEDs(2, pinSmartLED, NEO_GRB + NEO_KHZ400);
 
+
+void setServo(const int angle) {
+    long dutyCycle = map(angle, 0, 180, 1675, 8050);
+    ledcWrite(6, dutyCycle);
+}
+
 #include "Climbing.h"
 #include "Drive.h"
 #include "Sequence.h"

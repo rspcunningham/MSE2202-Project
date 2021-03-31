@@ -231,13 +231,13 @@ void runMotors2(double angle,double distance) {
         //Serial.println("FORWARD");
     }
     if(angle==1){//Turn Right
-        powerRight=-3;
-        powerLeft=5;
+        powerRight=-1;
+        powerLeft=1;
         //Serial.println("RIGHT");
     }
     if(angle==2){
-        powerLeft=-5;
-        powerRight=3;
+        powerLeft=-3;
+        powerRight=2;
         //Serial.println("LEFT");
     }
     if(angle==3){

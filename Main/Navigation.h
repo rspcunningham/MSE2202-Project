@@ -1,7 +1,3 @@
-void setServo(const int angle) {
-    long dutyCycle = map(angle, 0, 180, 1675, 8050);
-    ledcWrite(6, dutyCycle);
-}
 
 void copyFullMap() {
     for (int i = 0; i < 180; i += resolution) {

@@ -5,7 +5,8 @@ void moveRobotSequence(double distance){
             runMotors2(0,distance); //Let the angle be the way it moves -- 0 should be forward
             //Serial.println(distance);
             robotSequenceCounter++;
-            if(robotSequenceCounter==950){
+            if(robotSequenceCounter>=950){
+                setServo(90);
                 robotSequence=1;
                 robotSequenceCounter=0;
             }
@@ -14,12 +15,18 @@ void moveRobotSequence(double distance){
          case 1:
             runMotors2(4,distance);
             robotSequenceCounter++;
-            if(robotSequenceCounter==30){
+            if(robotSequenceCounter>=200){
+                if(distance>50){
+                    runMotors2(5,distance);
+                }
+                if(distance<70){
                 robotSequence=2;
                 robotSequenceCounter=0;
+                }
             }
             break;
         case 2:
+            setServo(0);
             runMotors2(2,distance);//Let the angle be the way it moves -- 2 should be left
             robotSequenceCounter++;
             if(robotSequenceCounter==75){
@@ -30,7 +37,7 @@ void moveRobotSequence(double distance){
         case 3:
             runMotors2(4,distance);
             robotSequenceCounter++;
-            if(robotSequenceCounter==30){
+            if(robotSequenceCounter==100){
                 robotSequence=4;
                 robotSequenceCounter=0;
             }
@@ -38,7 +45,7 @@ void moveRobotSequence(double distance){
         case 4:
             runMotors2(0,distance); //Let the angle be the way it moves -- 0 should be forward
             robotSequenceCounter++;
-            if(robotSequenceCounter==200){
+            if(robotSequenceCounter==50){
                 robotSequence=5;
                 robotSequenceCounter=0;
             }
