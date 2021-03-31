@@ -33,8 +33,8 @@ number    pins         description                        Brd Jumpers /Labels   
           30            VIN                               PWR 5V t 7V                                                                          PWR 5V to 7V
 */
 
-#define pinUStrig      26  //grey lead
-#define pinUSecho      23  //white lead
+#define pinUStrig      23  //grey lead
+#define pinUSecho      26  //white lead
 #define pinIR          16
 #define pinMotorRightA 19
 #define pinMotorRightB 12
@@ -49,3 +49,4 @@ number    pins         description                        Brd Jumpers /Labels   
 #define pinSmartLED    25
 #define pinStatusLED   2
 #define pinButton      27
+#define pinLockServo   33

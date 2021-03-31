@@ -1,4 +1,4 @@
-void moveRobotSequence(int* angle){
+/*void moveRobotSequence(int* angle){
     switch (robotSequence){
         case 0:
             *angle=180;
@@ -11,4 +11,4 @@ void moveRobotSequence(int* angle){
 
     } 
 } 
-
+*/

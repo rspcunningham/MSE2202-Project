@@ -15,6 +15,8 @@ void loop() {
     if (currentTime < lastTime + interval) return;
     lastTime = currentTime;
 
+    //Serial.println(running);
+
     updateEncoder(currentTime);
 
     if (running) {
@@ -27,14 +29,15 @@ void loop() {
             return;
         }
 
-        //Navigation();
+        Navigation();
 
+        /*
         //Calculate target angle
         switch (robotSequence) {
             case 0:  //2 second hold
                 if (lastTime2 == 0) lastTime2 = currentTime;
                 if (currentTime < lastTime2 + hold) return;
-                robotSequence = 1;
+                //robotSequence = 1;
                 break;
             case 1:  //getting around obstacle
                 //targetAngle = findEdge();
@@ -51,10 +54,11 @@ void loop() {
                     targetAngle = -5;  //if the obstacle is too far from the left, turn left a bit
                 break;
         }
-
+*/
     } else {
         runRightMotor(0);
         runLeftMotor(0);
+        digitalWrite(pinWinch, LOW);
         robotSequence = 0;
         lastTime2 = 0;
         deltaRegisterRight = 0;

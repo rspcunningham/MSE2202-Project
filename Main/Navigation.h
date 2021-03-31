@@ -38,7 +38,7 @@ int getTOF() {  // Call every 50 ms
     digitalWrite(pinUStrig, LOW);
 
     // Read the echoPin, pulseIn() returns the duration (length of the pulse) in microseconds:
-    duration = pulseIn(pinUSecho, HIGH);
+    duration = pulseIn(pinUSecho, HIGH, 5000);
     // Calculate the distance:
 
     return duration;
@@ -82,12 +82,14 @@ void Navigation() {
     currentTime = millis();
 
     //if (collision) {
-        //Will run if TSOP sensor goes off
+    //Will run if TSOP sensor goes off
     //}
 
     if (currentTime < lastTime + USinterval) return;
     lastTime = currentTime;
     setServo(angle);
+
+    Serial.println(angle);
 
     long duration = getTOF();
     double distance = duration * 0.0343 / 2;
@@ -97,11 +99,12 @@ void Navigation() {
     angle += resolution * dir;
     //moveRobotSequence(&angle);
 
-    if (angle > 180) {
+    if (angle >= 180) {
+        running = true;
         dir = -1;
-        copyFullMap();
-    } else if (angle < 0) {
+        //copyFullMap();
+    } else if (angle <= 0) {
         dir = 1;
-        copyFullMap();
+        //copyFullMap();
     }
 }

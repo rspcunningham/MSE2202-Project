@@ -45,7 +45,7 @@ void setup() {
 
     //Begin Serial communication at a baudrate of 9600:
     Serial.begin(115200);
-    Serial2.begin(2400, SERIAL_8N1, pinIR);
+    //Serial2.begin(2400, SERIAL_8N1, pinIR);
 
     //setup PWM for motors
     ledcAttachPin(pinMotorLeftA, 1);  // assign Motors pins to channels

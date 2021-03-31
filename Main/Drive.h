@@ -1,8 +1,9 @@
 double averageSpeed = 0.2;  //in ticks/ms
 
-double gainP = 0.1;      // % per ticks/ms
-double gainI = 0.1;    // % per ticks
+double gainP = 1;      // % per ticks/ms
+double gainI = 3;    // % per ticks
 double gainD = 1;    // % per ticks/ms^2
+
 double gainA = 0.005;  // ticks/ms per degree
 
 int maxPower = 255;
@@ -112,8 +113,8 @@ void runMotors(double angle) {
     deltaLastRight = deltaRight;
     deltaLastLeft = deltaLeft;
 
-    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI;// + deltaDeltaRight * gainD;  //power should be between 0 and 1
-    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI;// + deltaDeltaLeft * gainD;
+    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI + deltaDeltaRight * gainD;  //power should be between 0 and 1
+    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI + deltaDeltaLeft * gainD;
 
     //anti-windup
 
