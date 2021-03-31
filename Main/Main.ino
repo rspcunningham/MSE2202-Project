@@ -9,7 +9,7 @@ void loop() {
     flashStatusLED();
     buttonHandler();
     ENC_Averaging();
-    prevDistance=50;
+    prevDistance=40;
     //Serial.println(distance());
 
     if (currentTime < lastTime + interval) return;
