@@ -9,11 +9,15 @@ void loop() {
     flashStatusLED();
     buttonHandler();
     ENC_Averaging();
+    prevDistance=50;
+    //Serial.println(distance());
 
     if (currentTime < lastTime + interval) return;
 
+    moveRobotSequence(distance());
     updateEncoder(currentTime);
 
+    /*
     if (running) {
         flashSmartLED();
 
@@ -53,6 +57,7 @@ void loop() {
         SmartLEDs.clear();
         SmartLEDs.show();
     }
+    */
 }
 
 //test

@@ -137,3 +137,120 @@ void runMotors(double angle) {
     runRightMotor(powerRight);
     runLeftMotor(powerLeft);
 }
+
+
+//runs motors at appropriate speed differential given an angle
+//angle should be between -90 and +90; positive angles to the right of centre, negative angles to the left
+// angle of 0 indicates straight on. left and right speeds the same
+void runMotors2(double angle,double distance) {
+    //Calculate desired speed delta
+    double speedDelta = angle * gainA;
+
+    double targetRight = averageSpeed - speedDelta / 2;
+    double targetLeft = averageSpeed + speedDelta / 2;
+
+    //Calculate power needed to get to those speeds (feedback)
+
+    double currentRight = getRightSpeed();
+    double currentLeft = getLeftSpeed();
+    
+
+    /*
+    double deltaRight = targetRight - currentRight;
+    double deltaLeft = targetLeft - currentLeft;
+
+
+    deltaDeltaRight = deltaRight - deltaLastRight;
+    deltaDeltaLeft = deltaLeft - deltaLastLeft;
+
+    deltaRegisterRight += deltaRight;
+    deltaRegisterLeft += deltaLeft;
+
+    deltaLastRight = deltaRight;
+    deltaLastLeft = deltaLeft;
+
+    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI;// + deltaDeltaRight * gainD;  //power should be between 0 and 1
+    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI;// + deltaDeltaLeft * gainD;
+    */
+
+    //anti-windup
+/*
+    if (abs(powerRight) > 1) {
+        powerRight = powerRight / abs(powerRight);
+        deltaRegisterRight -= deltaRight;
+    }
+
+    if (abs(powerLeft) > 1) {
+        powerLeft = powerLeft/ abs(powerLeft);
+        deltaRegisterLeft -= deltaLeft;
+    }
+*/
+    //call left and right motors at those speeds
+/*
+    Serial.print("Left: ");
+    Serial.print(powerLeft);
+    Serial.print(" Right: ");
+    Serial.println(powerRight);
+*/  double powerRight=5;
+    double powerLeft=5;
+
+    if(distance==prevDistance){
+        firstTime=true;
+        counter=0;
+    }
+    else{
+        if(firstTime==false){
+            if(distance>(1.2*prevDistance)){
+                counter++;
+                powerRight=powerRight -(counter*5);
+                powerLeft=1;
+            }
+            else if((0.8*prevDistance)>distance){
+                counter++;
+                powerLeft=powerLeft -(counter*5);
+                powerRight=1;
+            }
+            else{
+                counter=0;
+            }
+        }
+        counter=0;
+        firstTime=false;
+    }
+    /*
+    Serial.print(distance);
+    Serial.print(" --- Right ");
+    Serial.print(powerRight);
+    Serial.print(" --- Left ");
+    Serial.println(powerLeft);
+    */
+
+    if(angle==0){
+        Serial.println("FORWARD");
+    }
+    if(angle==1){//Turn Right
+        powerRight=-1;
+        powerLeft=1;
+        Serial.println("RIGHT");
+    }
+    if(angle==2){
+        powerLeft=1;
+        powerRight=-1;
+        Serial.println("LEFT");
+    }
+    if(angle==3){
+        powerRight=-1*powerRight;
+        powerLeft=-1*powerLeft;
+        Serial.println("BACKWARD");
+    }
+
+
+    Serial.print(distance);
+    Serial.print(" --- Right ");
+    Serial.print(powerRight);
+    Serial.print(" --- Left ");
+    Serial.println(powerLeft);
+
+    //runRightMotor(powerRight);
+    //runLeftMotor(powerLeft);
+}

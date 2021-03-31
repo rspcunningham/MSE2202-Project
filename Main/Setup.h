@@ -9,6 +9,11 @@ static boolean climbing = false;
 const int resolution = 10;
 
 int robotSequence = 0;
+int robotSequenceCounter=0;
+double prevDistance;
+bool firstTime=true;
+int counter=0;
+
 
 /*
 struct mapPoint {
@@ -29,7 +34,7 @@ Adafruit_NeoPixel SmartLEDs(2, pinSmartLED, NEO_GRB + NEO_KHZ400);
 #include "Encoder.h"
 #include "Navigation.h"
 #include "Utilities.h"
-#include "Sequence.h"
+
 
 
 void setup() {

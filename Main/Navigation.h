@@ -95,7 +95,7 @@ void Navigation() {
     distMapActive[angle] = distance;
 
     angle += resolution * dir;
-    //moveRobotSequence(&angle);
+    //moveRobotSequence();
 
     if (angle > 180) {
         dir = -1;
@@ -104,4 +104,10 @@ void Navigation() {
         dir = 1;
         copyFullMap();
     }
+}
+
+double distance(){
+    long duration =getTOF();
+    double distance = duration * 0.0343 / 2;
+    return distance;
 }
