@@ -52,7 +52,7 @@ void runRightMotor(double power) {
     if (power < -1) power = -1;
     if (power > 1) power = 1;
 
-    int pwmPower = (int)(rightStallPower + power * (maxPower - rightStallPower));
+    double pwmPower = (double)(rightStallPower + power * (maxPower - rightStallPower));
 
     if (power > 0) {
         ledcWrite(3, 0);
@@ -70,7 +70,7 @@ void runLeftMotor(double power) {
     if (power < -1) power = -1;
     if (power > 1) power = 1;
 
-    int pwmPower = (int)(leftStallPower + power * (maxPower - leftStallPower));
+    double pwmPower = (double)(leftStallPower + power * (maxPower - leftStallPower));
 
     if (power > 0) {
         ledcWrite(1, pwmPower);
@@ -241,8 +241,8 @@ void runMotors2(double angle,double distance) {
         //Serial.println("LEFT");
     }
     if(angle==3){
-        powerRight=-1*powerRight;
-        powerLeft=-1*powerLeft;
+        powerRight=-0.9;
+        powerLeft=-1;
         //Serial.println("BACKWARD");
     }
     if(angle==4){
