@@ -10,6 +10,8 @@ const int resolution = 10;
 
 int robotSequence = 0;
 
+double wallDist = 0;
+
 /*
 struct mapPoint {
     unsigned long time;
@@ -74,7 +76,7 @@ void setup() {
     ledcAttachPin(pinSonarServo, 6);
     ledcSetup(6, 50, 16);
 
-    setServo(0);
+    setServo(10);
 
     SmartLEDs.begin();
     SmartLEDs.clear();

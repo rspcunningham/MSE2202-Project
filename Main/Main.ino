@@ -29,20 +29,30 @@ void loop() {
             return;
         }
 
+        //runRightMotor(1);
+        //runLeftMotor(1);
+        //runMotors(0);
+
         Navigation();
 
-        /*
+        //Serial.println(wallDist);
+
+        //robotSequence = -1;
+
         //Calculate target angle
         switch (robotSequence) {
             case 0:  //2 second hold
                 if (lastTime2 == 0) lastTime2 = currentTime;
                 if (currentTime < lastTime2 + hold) return;
-                //robotSequence = 1;
+                robotSequence = 1;
                 break;
             case 1:  //getting around obstacle
+
+                Climb();
+                
                 //targetAngle = findEdge();
-                targetAngle = 0;
-                runMotors(targetAngle);
+                //targetAngle = (wallDist - 20) * 2;
+                //runMotors(targetAngle);
                 //some kind of end condition to know it has passed the edge
                 break;
             case 2:  //getting to the wall where the rope is
@@ -54,7 +64,7 @@ void loop() {
                     targetAngle = -5;  //if the obstacle is too far from the left, turn left a bit
                 break;
         }
-*/
+
     } else {
         runRightMotor(0);
         runLeftMotor(0);
