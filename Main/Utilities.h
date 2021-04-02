@@ -52,6 +52,7 @@ void buttonHandler() {
             if (currentState == LOW) {
                 ENC_ClearLeftOdometer();
                 ENC_ClearRightOdometer();
+                timeCounter=millis();
                 running = !running;
             }
         }

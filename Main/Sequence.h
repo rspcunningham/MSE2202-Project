@@ -1,21 +1,16 @@
 void moveRobotSequence(double distance){
     switch (robotSequence){
         case 0://Move Foward
-            //*angle=180;
             runMotors2(0,distance); //Let the angle be the way it moves -- 0 should be forward
-            robotSequenceCounter++;
-            if(robotSequenceCounter>=950){
-                setServo(90);
+            if((millis()-timeCounter)>=2500){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-
          case 1://Stop
             runMotors2(4,distance);
-            robotSequenceCounter++;
-            if(robotSequenceCounter>=200){
-                if(distance>45){
+            if((millis()-timeCounter)>=100){
+                /*if(distance>45){
                     runMotors2(5,distance);
                 }
                 else if(distance<35){
@@ -25,124 +20,122 @@ void moveRobotSequence(double distance){
                     runMotors2(4,distance);
                     robotSequence++;
                     robotSequenceCounter=0;
-                }
+                }*/
+                //runMotors2(4,distance);
+                    robotSequence++;
+                    timeCounter=millis();
             }
             break;
-        case 2://Stop
+        case 2://Move Forward without adjustment 
+            runMotors2(5,distance); //Let the angle be the way it moves -- 0 should be forward
+            if((millis()-timeCounter)>=500){
+                robotSequence++;
+                timeCounter=millis();
+            }
+            break;
+        case 3://Stop
             runMotors2(4,distance);
-            robotSequenceCounter++;
-            if(robotSequenceCounter>=200){
+            if((millis()-timeCounter)>=100){
                 robotSequence++;
-                robotSequenceCounter=0;
-            }
-        case 3://Turn Left
-            setServo(0);
-            runMotors2(2,distance);//Let the angle be the way it moves -- 2 should be left
-            robotSequenceCounter++;
-            if(robotSequenceCounter>=1){
-                robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-        case 4://Stop
+        case 4://Turn Right
+            //setServo(0);
+            runMotors2(1,distance);
+            if((millis()-timeCounter)>=750){
+                robotSequence++;
+                timeCounter=millis();
+            }
+            break;
+        case 5://Stop
             runMotors2(4,distance);
-            robotSequenceCounter++;
-            if(robotSequenceCounter==100){
+            if((millis()-timeCounter)>=100){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-        case 5://Move Forward
-            runMotors2(0,distance); //Let the angle be the way it moves -- 0 should be forward
-            robotSequenceCounter++;
-            if(robotSequenceCounter==100){
+        case 6://Move Forward without adjustment 
+            runMotors2(5,distance); //Let the angle be the way it moves -- 0 should be forward
+            if((millis()-timeCounter)>=500){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-        case 6:// Stop
+        case 7:// Stop
             runMotors2(4,distance);
-            robotSequenceCounter++;
-            if(robotSequenceCounter==50){
+            if((millis()-timeCounter)>=100){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-        case 7://Turn Right 
+        case 8://Turn Right 
             runMotors2(1,distance);//Let the angle be the way it moves -- 1 should be right
-            robotSequenceCounter++;
-            if(robotSequenceCounter==100){
+            if((millis()-timeCounter)>=750){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-         case 8://Stop
+         case 9://Stop
             runMotors2(4,distance);
-            robotSequenceCounter++;
-            if(robotSequenceCounter==40){
+            if((millis()-timeCounter)>=100){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-        case 9://Move Forward without adjustment 
+        case 10://Move Forward without adjustment 
             runMotors2(5,distance);//Let the angle be the way it moves -- 
-            robotSequenceCounter++;
-            if(robotSequenceCounter==100){
+            if((millis()-timeCounter)>=1000){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-         case 10://Stop
+         case 11://Stop
             runMotors2(4,distance);//Let the angle be the way it moves -- 2 should be left
-            robotSequenceCounter++;
-            if(robotSequenceCounter==30){
+            if((millis()-timeCounter)>=100){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-        case 11://Move Forward
+        case 12://Move Forward
             runMotors2(0,distance); //Let the angle be the way it moves -- 0 should be forward
-            robotSequenceCounter++;
-            if(robotSequenceCounter==200){
+            if((millis()-timeCounter)>=1000){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
+                
             }
             //runMotors2(2,distance);//Let the angle be the way it moves -- 2 should be left
             break;
-         case 12://Stop
+        case 13://Stop
             runMotors2(4,distance);//Let the angle be the way it moves -- 2 should be left
-            robotSequenceCounter++;
-            if(robotSequenceCounter==30){
+            /*            if((millis()-timeCounter)>=100){
                 robotSequence++;
-                robotSequenceCounter=0;
-            }
+                timeCounter=millis();
+            }*/
             break;
-        case 13://Turn Right
+        case 14://Turn Right
             runMotors2(1,distance);//Let the angle be the way it moves -- 1 should be right
-            robotSequenceCounter++;
-            if(robotSequenceCounter==75){
+            if((millis()-timeCounter)>=100){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-         case 14://Stop
+         case 15://Stop
             runMotors2(4,distance);//Let the angle be the way it moves -- 2 should be left
-            robotSequenceCounter++;
-            if(robotSequenceCounter==30){
+            if((millis()-timeCounter)>=100){
                 robotSequence++;
-                robotSequenceCounter=0;
+                timeCounter=millis();
             }
             break;
-        case 15://Move Forward
+        case 16://Move Forward
             runMotors2(0,distance); //Let the angle be the way it moves -- 0 should be forward
-            robotSequenceCounter++;
-            if(robotSequenceCounter==300){
+            if((millis()-timeCounter)>=100){
                 robotSequence++;
-                robotSequenceCounter=0;
-            } 
+                timeCounter=millis();
+            }
             //runMotors2(3,distance); //Let the angle be the way it moves -- 3 should be backwards
             break;
-        case 16://Stop
+        case 17://Stop
             runMotors2(4,distance);
             break;
 

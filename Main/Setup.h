@@ -9,9 +9,10 @@ static boolean climbing = false;
 const int resolution = 10;
 
 int robotSequence = 0;
-int robotSequenceCounter=0;
+//int robotSequenceCounter=0;
 double prevDistance;
 bool firstTime=true;
+double timeCounter;
 int counter=0;
 
 
@@ -91,4 +92,6 @@ void setup() {
     SmartLEDs.begin();
     SmartLEDs.clear();
     SmartLEDs.show();
+
+    timeCounter=millis();
 }

@@ -193,8 +193,8 @@ void runMotors2(double angle,double distance) {
     Serial.println(powerRight);
 */  
 
-    double powerRight=5;
-    double powerLeft=5;
+    double powerRight=0.3;
+    double powerLeft=0.1;
 
     if(distance==prevDistance){
         firstTime=true;
@@ -204,13 +204,13 @@ void runMotors2(double angle,double distance) {
         if(firstTime==false){
             if(distance>(1.15*prevDistance)){
                 counter++;
-                powerRight=powerRight -(counter*5);
-                powerLeft=1;
+                powerRight=powerRight -(counter*0.5);
+                powerLeft=0.3;
             }
             else if((0.85*prevDistance)>distance){
                 counter++;
-                powerLeft=powerLeft -(counter*5);
-                powerRight=1;
+                powerLeft=powerLeft -(counter*0.5);
+                powerRight=0.3;
             }
             else{
                 counter=0;
@@ -231,8 +231,8 @@ void runMotors2(double angle,double distance) {
         //Serial.println("FORWARD");
     }
     if(angle==1){//Turn Right
-        powerRight=-1;
-        powerLeft=1;
+        powerRight=-0.15;
+        powerLeft=0.15;
         //Serial.println("RIGHT");
     }
     if(angle==2){
@@ -250,10 +250,22 @@ void runMotors2(double angle,double distance) {
         powerRight=0;
     }
     if(angle==5){
-        powerRight=9;
-        powerLeft=10;
+        powerRight=0.3;
+        powerLeft=0.1;
     }
 
+    if(angle==4){
+        Serial.println("Yes");
+        runLeftMotor(0);
+        runRightMotor(0);
+        
+    }
+    else{
+        Serial.println("NO");
+        runRightMotor(powerRight);
+        runLeftMotor(powerLeft);
+    }
+    
 
     //Serial.print(distance);
     //Serial.print(" --- Right ");
@@ -261,6 +273,4 @@ void runMotors2(double angle,double distance) {
     //Serial.print(" --- Left ");
     //Serial.println(powerLeft);
 
-    runRightMotor(powerRight);
-    runLeftMotor(powerLeft);
 }
