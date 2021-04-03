@@ -32,13 +32,18 @@ void loop() {
         //runLeftMotor(1);
         //runMotors(0);
 
-        Navigation();
+        //Navigation();
+
+        if (lastTime2 == 0) lastTime2 = currentTime;
+        if (currentTime < lastTime2 + hold) return;
+        climbing = true;
 
         //Serial.println(wallDist);
 
         //robotSequence = -1;
 
         //Calculate target angle
+        /*
         switch (robotSequence) {
             case 0:  //2 second hold
                 if (lastTime2 == 0) lastTime2 = currentTime;
@@ -65,6 +70,7 @@ void loop() {
                 }
                 break;
         }
+        */
 
     } else {
         runRightMotor(0);
