@@ -6,9 +6,14 @@
 static boolean running = false;
 static boolean climbing = false;
 
+volatile int32_t ENC_vi32LeftOdometer;
+volatile int32_t ENC_vi32RightOdometer;
+
 const int resolution = 10;
 
 int robotSequence = 0;
+int robotDriveSequence=0;
+double stopTimer=0;
 
 /*
 struct mapPoint {

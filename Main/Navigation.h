@@ -24,7 +24,7 @@ int findEdge() {
     return angle;
 }
 
-int getTOF() {  // Call every 50 ms
+double getTOF() {  // Call every 50 ms
 
     long duration;
     int distance;
@@ -42,6 +42,11 @@ int getTOF() {  // Call every 50 ms
     // Calculate the distance:
 
     return duration;
+}
+
+double getDistance(){
+    double distance = getTOF() * 0.0343 / 2;
+    return distance;
 }
 
 boolean getIRData() {

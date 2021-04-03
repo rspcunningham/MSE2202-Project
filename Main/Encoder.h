@@ -32,9 +32,6 @@ int32_t ENC_ui32RightEncoderBAveTime;
 uint32_t ENC_ui32LeftEncoderAveTime;
 uint32_t ENC_ui32RightEncoderAveTime;
 
-volatile int32_t ENC_vi32LeftOdometer;
-volatile int32_t ENC_vi32RightOdometer;
-
 volatile int32_t ENC_vi32LeftOdometerCompare;
 volatile int32_t ENC_vi32RightOdometerCompare;
 

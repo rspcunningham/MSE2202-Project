@@ -6,7 +6,6 @@ void loop() {
     static long lastTime2;
     int interval = 1;
     int hold = 2000;
-    int targetAngle;
 
     flashStatusLED();
     buttonHandler();
@@ -38,17 +37,19 @@ void loop() {
                 break;
             case 1:  //getting around obstacle
                 //targetAngle = findEdge();
-                targetAngle = 0;
-                runMotors(targetAngle);
+                moveRobotSequence();
                 //some kind of end condition to know it has passed the edge
                 break;
             case 2:  //getting to the wall where the rope is
-                if (distMapFull[90] < 5)
-                    climbing = true;  //once the wall is within 5 cm, start to climb
-                else if (distMapFull[0] < 5)
-                    targetAngle = 5;  // if the obstacle is too close to the left, turn right a bit
-                else if (distMapFull[0] > 10)
-                    targetAngle = -5;  //if the obstacle is too far from the left, turn left a bit
+                if (distMapFull[90] < 5){
+                     climbing = true;  //once the wall is within 5 cm, start to climb
+                }
+                else if (distMapFull[0] < 5){
+                    //targetAngle = 5;  // if the obstacle is too close to the left, turn right a bit
+                }
+                else if (distMapFull[0] > 10){
+                    //targetAngle = -5;  //if the obstacle is too far from the left, turn left a bit
+                }
                 break;
         }
 
