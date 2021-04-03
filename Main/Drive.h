@@ -1,9 +1,10 @@
 double averageSpeed = 0.2; //in ticks/ms
 
-double gainP = 0.5;   // % per ticks/ms
-double gainI = 0.1;   // % per ticks
-double gainD = 1;     // % per ticks/ms^2
-double gainA = 0.005; // ticks/ms per degree
+double gainP = 1;      // % per ticks/ms
+double gainI = 3;    // % per ticks
+double gainD = 1;    // % `per ticks/ms^2
+
+double gainA = 0.005;  // ticks/ms per degree
 
 int maxPower = 255;
 int rightStallPower = 120;

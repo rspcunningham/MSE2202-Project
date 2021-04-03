@@ -15,6 +15,8 @@ int robotSequence = 0;
 int robotDriveSequence=0;
 double stopTimer=0;
 
+double wallDist = 0;
+
 /*
 struct mapPoint {
     unsigned long time;
@@ -50,7 +52,7 @@ void setup() {
 
     //Begin Serial communication at a baudrate of 9600:
     Serial.begin(115200);
-    Serial2.begin(2400, SERIAL_8N1, pinIR);
+    //Serial2.begin(2400, SERIAL_8N1, pinIR);
 
     //setup PWM for motors
     ledcAttachPin(pinMotorLeftA, 1);  // assign Motors pins to channels
@@ -79,7 +81,7 @@ void setup() {
     ledcAttachPin(pinSonarServo, 6);
     ledcSetup(6, 50, 16);
 
-    setServo(0);
+    setServo(10);
 
     SmartLEDs.begin();
     SmartLEDs.clear();
