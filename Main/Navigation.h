@@ -39,7 +39,6 @@ double getTOF() {  // Call every 50 ms
 
     // Read the echoPin, pulseIn() returns the duration (length of the pulse) in microseconds:
     duration = pulseIn(pinUSecho, HIGH, 5000);
-    // Calculate the distance:
 
     return duration;
 }
@@ -102,6 +101,7 @@ void Navigation() {
 
     wallDist = distance;
 
+    Serial.println(wallDist);
     //distMapActive[angle] = distance;
 
     //angle += resolution * dir;
