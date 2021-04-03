@@ -165,7 +165,7 @@ void runMotors(double angle)
     double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI;    // + deltaDeltaLeft * gainD;
 
     double error = getLeftDistance() - getRightDistance();
-    double c = 0.75;
+    double c = 0.5;
 
     powerRight = 100 - (error * c);
     powerLeft = 100 + (error * c);
@@ -202,4 +202,11 @@ void stopMotors()
     ledcWrite(3, 255);
     ledcWrite(4, 255);
     stopTimer=millis();
+}
+
+void rightTurn(){
+    ledcWrite(1, 255);
+    ledcWrite(2, 0);
+    ledcWrite(3, 0);
+    ledcWrite(4, 0);
 }

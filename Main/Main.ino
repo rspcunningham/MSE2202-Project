@@ -32,7 +32,7 @@ void loop() {
         //runLeftMotor(1);
         //runMotors(0);
 
-        //Navigation();
+        Navigation();
 
         //Serial.println(wallDist);
 

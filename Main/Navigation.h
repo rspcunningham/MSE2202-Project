@@ -95,7 +95,7 @@ void Navigation() {
     lastTime = currentTime;
     //setServo(angle);
 
-    Serial.println(angle);
+    //Serial.println(angle);
 
     long duration = getTOF();
     double distance = duration * 0.0343 / 2;
