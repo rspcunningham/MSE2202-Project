@@ -32,7 +32,7 @@ void loop() {
         //runLeftMotor(1);
         //runMotors(0);
 
-        Navigation();
+        //Navigation();
 
         //Serial.println(wallDist);
 
@@ -47,10 +47,10 @@ void loop() {
                 break;
             case 1:  //getting around obstacle
 
-                Climb();
+                //Climb();
                 
                 //targetAngle = findEdge();
-                moveRobotSequence();
+                moveRobotSequence(getDistance());
                 //some kind of end condition to know it has passed the edge
                 break;
             case 2:  //getting to the wall where the rope is
