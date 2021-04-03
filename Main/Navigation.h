@@ -45,8 +45,9 @@ double getTOF() {  // Call every 50 ms
 }
 
 double getDistance(){
-    double distance = getTOF() * 0.0343 / 2;
-    return distance;
+    //double distance = getTOF() * 0.0343 / 2;
+    //return distance;
+    return wallDist;
 }
 
 boolean getIRData() {

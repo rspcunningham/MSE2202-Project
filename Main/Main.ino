@@ -47,7 +47,7 @@ void loop() {
                 break;
             case 1:  //getting around obstacle
 
-                Climb();
+                //Climb();
                 
                 //targetAngle = findEdge();
                 moveRobotSequence();
