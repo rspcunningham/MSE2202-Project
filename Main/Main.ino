@@ -78,6 +78,7 @@ void loop() {
         digitalWrite(pinWinch, LOW);
         robotSequence = 0;
         lastTime2 = 0;
+        climbing = false;
         deltaRegisterRight = 0;
         deltaRegisterLeft = 0;
         SmartLEDs.clear();
