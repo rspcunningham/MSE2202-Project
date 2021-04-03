@@ -11,8 +11,6 @@ void moveRobotSequence(double distance) {
             //Serial.println(distance);
             Serial.println("0");
             if (distance <=0) {  //Does the US has a large distance input
-                
-
                 if ((currentTime - stopTimer) >= 50) {  //Has 100ms passed with the US having a large distance
                     robotDriveSequence++;               //Go to next step in the drive sequence
                     stopMotors(); //Stop motors
@@ -52,7 +50,7 @@ void moveRobotSequence(double distance) {
             runMotors(targetAngle);  //Run motors forward
             //Serial.println(distance);
             Serial.println("4");
-            if (distance >= 500) {  //Does the US has a large distance input
+            if (distance <=0) {  //Does the US has a large distance input
                 //Serial.println("YESSSSSSSSSS");
 
                 if ((currentTime - lastTime) >= 50) {  //Has 100ms passed with the US having a large distance
