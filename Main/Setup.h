@@ -77,11 +77,18 @@ void setup() {
     ENC_btLeftMotorRunningFlag = false;
     ENC_btRightMotorRunningFlag = false;
 
-
+    //setup sonar servo
     ledcAttachPin(pinSonarServo, 6);
     ledcSetup(6, 50, 16);
-
     setServo(10);
+
+    ledcAttachPin(pinLockServo, 8);
+    ledcSetup(8, 50, 16);
+    setLock(90);
+
+    //setup climbing motor
+    ledcAttachPin(pinWinch, 7);
+    ledcSetup(7, 20000, 8);
 
     SmartLEDs.begin();
     SmartLEDs.clear();

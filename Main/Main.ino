@@ -33,6 +33,7 @@ void loop() {
         //runMotors(0);
 
         //Navigation();
+        setLock(40);
 
         if (lastTime2 == 0) lastTime2 = currentTime;
         if (currentTime < lastTime2 + hold) return;
@@ -75,7 +76,7 @@ void loop() {
     } else {
         runRightMotor(0);
         runLeftMotor(0);
-        digitalWrite(pinWinch, LOW);
+        ledcWrite(7, 0);
         robotSequence = 0;
         lastTime2 = 0;
         climbing = false;
