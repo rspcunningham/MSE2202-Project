@@ -102,6 +102,7 @@ void Navigation() {
 
     wallDist = distance;
 
+    Serial.println(wallDist);
     //distMapActive[angle] = distance;
 
     //angle += resolution * dir;

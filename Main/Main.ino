@@ -17,9 +17,13 @@ void loop() {
     //Serial.println(running);
 
     updateEncoder(currentTime);
+    Navigation();  //dont comment this out anymore
 
     if (running) {
         flashSmartLED();
+
+        //Serial.print(getLeftSpeed());
+        //Serial.println(getRightSpeed());
 
         if (climbing) {
             runRightMotor(0);
@@ -31,8 +35,6 @@ void loop() {
         //runRightMotor(1);
         //runLeftMotor(1);
         //runMotors(0);
-
-        Navigation(); //dont comment this out anymore
 
         //Serial.println(wallDist);
 
@@ -46,14 +48,12 @@ void loop() {
                 robotSequence = 1;
                 break;
             case 1:  //getting around obstacle
-
-                //Climb();
-                
                 //targetAngle = findEdge();
                 moveRobotSequence(getDistance());
                 //some kind of end condition to know it has passed the edge
                 break;
             case 2:  //getting to the wall where the rope is
+                     /*
                 if (distMapFull[90] < 5){
                      climbing = true;  //once the wall is within 5 cm, start to climb
                 }
@@ -63,6 +63,7 @@ void loop() {
                 else if (distMapFull[0] > 10){
                     //targetAngle = -5;  //if the obstacle is too far from the left, turn left a bit
                 }
+            */
                 break;
         }
 
@@ -71,6 +72,7 @@ void loop() {
         runLeftMotor(0);
         digitalWrite(pinWinch, LOW);
         robotSequence = 0;
+        robotDriveSequence = 0;
         lastTime2 = 0;
         deltaRegisterRight = 0;
         deltaRegisterLeft = 0;

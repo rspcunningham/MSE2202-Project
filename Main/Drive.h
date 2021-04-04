@@ -1,8 +1,8 @@
 double averageSpeed = 0.2; //in ticks/ms
 
-double gainP = 1;      // % per ticks/ms
-double gainI = 3;    // % per ticks
-double gainD = 1;    // % `per ticks/ms^2
+double gainP = 0.1;      // % per ticks/ms
+double gainI = 1;    // % per ticks
+double gainD = 0.1;    // % `per ticks/ms^2
 
 double gainA = 0.005;  // ticks/ms per degree
 
@@ -161,14 +161,17 @@ void runMotors(double angle)
     deltaLastRight = deltaRight;
     deltaLastLeft = deltaLeft;
 
-    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI; // + deltaDeltaRight * gainD;  //power should be between 0 and 1
-    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI;    // + deltaDeltaLeft * gainD;
+    double powerRight = deltaRight * gainP + deltaRegisterRight * gainI + deltaDeltaRight * gainD;  //power should be between 0 and 1
+    double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI + deltaDeltaLeft * gainD;
 
+/*
     double error = getLeftDistance() - getRightDistance();
     double c = 0.75;
 
     powerRight = 100 - (error * c);
     powerLeft = 100 + (error * c);
+
+    */
     /*
     Serial.print("Right -- ");
     Serial.print(getRightDistance());
