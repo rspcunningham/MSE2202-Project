@@ -81,7 +81,7 @@ void setup() {
     ledcAttachPin(pinSonarServo, 6);
     ledcSetup(6, 50, 16);
 
-    setServo(0);
+    setServo(10);
 
     SmartLEDs.begin();
     SmartLEDs.clear();

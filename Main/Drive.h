@@ -1,8 +1,8 @@
 double averageSpeed = 0.2; //in ticks/ms
 
-double gainP = 0.1;      // % per ticks/ms
+double gainP = 1;      // % per ticks/ms
 double gainI = 1;    // % per ticks
-double gainD = 0.1;    // % `per ticks/ms^2
+double gainD = 1;    // % `per ticks/ms^2
 
 double gainA = 0.005;  // ticks/ms per degree
 
