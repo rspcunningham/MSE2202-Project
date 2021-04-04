@@ -38,7 +38,7 @@ double getTOF() {  // Call every 50 ms
     digitalWrite(pinUStrig, LOW);
 
     // Read the echoPin, pulseIn() returns the duration (length of the pulse) in microseconds:
-    duration = pulseIn(pinUSecho, HIGH, 5000);
+    duration = pulseIn(pinUSecho, HIGH, 3000);
     // Calculate the distance:
 
     return duration;

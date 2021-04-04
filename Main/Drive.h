@@ -165,7 +165,7 @@ void runMotors(double angle)
     double powerLeft = deltaLeft * gainP + deltaRegisterLeft * gainI;    // + deltaDeltaLeft * gainD;
 
     double error = getLeftDistance() - getRightDistance();
-    double c = 0.5;
+    double c = 0.75;
 
     powerRight = 100 - (error * c);
     powerLeft = 100 + (error * c);
