@@ -78,8 +78,8 @@ void setup() {
     ENC_btRightMotorRunningFlag = false;
 
     //setup sonar servo
-    ledcAttachPin(pinSonarServo, 6);
-    ledcSetup(6, 50, 16);
+    ledcAttachPin(pinSonarServo, 10);
+    ledcSetup(10, 50, 16);
     setServo(10);
 
     ledcAttachPin(pinLockServo, 8);

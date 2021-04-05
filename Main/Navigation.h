@@ -1,6 +1,6 @@
 void setServo(const int angle) {
     long dutyCycle = map(angle, 0, 180, 1675, 8050);
-    ledcWrite(6, dutyCycle);
+    ledcWrite(10, dutyCycle);
 }
 
 void copyFullMap() {

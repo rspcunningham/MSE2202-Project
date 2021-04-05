@@ -1,5 +1,5 @@
 void moveRobotSequence(double distance) {
-    int targetAngle;
+    static int targetAngle;
 
     switch (robotDriveSequence) {
         case 0:                      //Drive forward until edge of box
@@ -26,7 +26,7 @@ void moveRobotSequence(double distance) {
 
         case 2:                                   //Turn Right
             rightTurn();                          //Run Motors Rights
-            if ((millis() - stopTimer) >= 500) {  //250 -> 400
+            if ((millis() - stopTimer) >= 400) {  //250 -> 400
                 //Has 100ms passed with the US having a large distance
                 robotDriveSequence++;             //Go to next step in the drive sequence
                 stopMotors();                     //Stop motors
@@ -61,9 +61,9 @@ void moveRobotSequence(double distance) {
 
         case 6:                                       //Drive forward until edge of box
             runMotors(targetAngle);                   //Run motors forward
-            if (distance <= 0 || distance >= 40) {    
+            if (distance <= 0 || distance >= 60) {    
                 //Does the US has a large distance input
-                if ((millis() - stopTimer) >= 100) {  
+                if ((millis() - stopTimer) >= 200) {  //100 -> 200
                     //Has 100ms passed with the US having a large distance
                     robotDriveSequence++;             //Go to next step in the drive sequence
                     stopMotors();                     //Stop motors
@@ -131,6 +131,7 @@ void moveRobotSequence(double distance) {
             if ((millis() - stopTimer) >= 200) { 
                 //Stop for 200ms
                 robotDriveSequence++;  //Go to next step in the drive sequence
+                robotSequence++;
             }
             break;
     }
