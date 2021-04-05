@@ -1,4 +1,4 @@
-#include "Setup.h"
+#include "Setup.h"  //To include the rest of the headers (Setup includes all the other headers)
 
 void loop() {
     long currentTime = millis();    

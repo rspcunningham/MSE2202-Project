@@ -87,8 +87,9 @@ void runRightMotor(double power)
     if (power > 1)
         power = 1;
 
-    double pwmPower = (double)(rightStallPower + power * (maxPower - rightStallPower));
+    double pwmPower = (double)(rightStallPower + power * (maxPower - rightStallPower)); //Calculate the pmPower to write to the motors (within the range)
 
+    //Writing to the motors
     if (power > 0)
     {
         ledcWrite(3, 0);
@@ -113,8 +114,9 @@ void runLeftMotor(double power)
     if (power > 1)
         power = 1;
 
-    double pwmPower = (double)(leftStallPower + power * (maxPower - leftStallPower));
+    double pwmPower = (double)(leftStallPower + power * (maxPower - leftStallPower)); //Calculate the pmPower to write to the motors (within the range)
 
+    //Writing to the motors
     if (power > 0)
     {
         ledcWrite(1, pwmPower);
