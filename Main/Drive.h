@@ -7,7 +7,7 @@ double gainD = 1;    // % `per ticks/ms^2
 double gainA = 0.005;  // ticks/ms per degree
 
 int maxPower = 255;
-int rightStallPower = 120;
+int rightStallPower = 120;  //Lowest speed the motors will run at
 int leftStallPower = 120;
 
 const int samples = 5;
@@ -54,27 +54,26 @@ double getLeftSpeed()
     return speed / samples;
 }
 
-double getRightDistance()
+double getRightDistance()   //Getting the Right distance of the encoder
 {
     double distance = 0;
 
-    for (int i = 1; i < samples; i++)
+    for (int i = 1; i < samples; i++)   
     {
-        int d = rightEncHist[i] - rightEncHist[i - 1];
-
-        distance += (double)d;
+        int d = rightEncHist[i] - rightEncHist[i - 1];  //Get each of the distance changes for each sample
+        distance += (double)d;  //Store each of the distance changes for each sample
     }
     return distance;
 }
 
-double getLeftDistance()
+double getLeftDistance() //Getting the Left distance of the encoder
 {
     double distance = 0;
 
-    for (int i = 1; i < samples; i++)
+    for (int i = 1; i < samples; i++) 
     {
-        int d = leftEncHist[i] - leftEncHist[i - 1];
-        distance += (double)d;
+        int d = leftEncHist[i] - leftEncHist[i - 1];    //Get each of the distance changes for each sample
+        distance += (double)d; //Store each of the distance changes for each sample
     }
 
     return distance;
@@ -172,13 +171,6 @@ void runMotors(double angle)
     powerLeft = 100 + (error * c);
 
     */
-    /*
-    Serial.print("Right -- ");
-    Serial.print(getRightDistance());
-    Serial.print(" -------  Left -- ");
-    Serial.println(getLeftDistance());
-
-    */
     //anti-windup
 
     if (abs(powerRight) > 1)
@@ -198,16 +190,16 @@ void runMotors(double angle)
     runLeftMotor(powerLeft);
 }
 
-void stopMotors()
+void stopMotors() //Stoping the motors with power (ie no coasting)
 {
     ledcWrite(1, 255);
     ledcWrite(2, 255);
     ledcWrite(3, 255);
     ledcWrite(4, 255);
-    stopTimer=millis();
+    stopTimer=millis(); //Saving the time it's called
 }
 
-void rightTurn(){
+void rightTurn(){   
     ledcWrite(1, 255);
     ledcWrite(2, 0);
     ledcWrite(3, 0);

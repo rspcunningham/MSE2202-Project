@@ -1,9 +1,9 @@
 
 void flashStatusLED() {
-    long currentTime = millis();
-    static long lastTime;
-    static boolean state;
-    int interval = 500;
+    long currentTime = millis();    //Store the current time
+    static long lastTime;   //what is the last time
+    static boolean state;   //what is the button state
+    int interval = 500; 
 
     if (currentTime - lastTime >= interval) {
         lastTime = currentTime;
@@ -34,12 +34,12 @@ void flashSmartLED() {
     }
 }
 
-void buttonHandler() {
+void buttonHandler() {  //Used for the Push Button
     int value = digitalRead(pinButton);  // read value of push button 1
-    static int lastState;
-    static int currentState;
-    static long lastTime;
-    int delayLength = 50;
+    static int lastState;   //What is the last state of the push button
+    static int currentState;    //What is the current state of the push button
+    static long lastTime;   //What was the last time recorded
+    int delayLength = 50;   //For how long to wait before checking
 
     if (value != lastState) {  // if value has changed
         lastTime = millis();   // reset the debouncing timer
@@ -49,10 +49,10 @@ void buttonHandler() {
         if (value != currentState) {  // if the button state has changed
             currentState = value;     // update current button state
 
-            if (currentState == LOW) {
-                ENC_ClearLeftOdometer();
-                ENC_ClearRightOdometer();
-                running = !running;
+            if (currentState == LOW) {  //If the button is pressed
+                ENC_ClearLeftOdometer();    //Clear the encoder values
+                ENC_ClearRightOdometer();   
+                running = !running;        //Change running bool to opposite value
             }
         }
     }

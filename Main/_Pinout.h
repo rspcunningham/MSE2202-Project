@@ -35,7 +35,7 @@ number    pins         description                        Brd Jumpers /Labels   
 
 #define pinUStrig      23  //grey lead -- Trigger
 #define pinUSecho      26  //white lead -- Echo
-#define pinIR          16
+#define pinIR          16  
 #define pinMotorRightA 19
 #define pinMotorRightB 12
 #define pinMotorLeftA  4
@@ -44,9 +44,9 @@ number    pins         description                        Brd Jumpers /Labels   
 #define pinEncRightB   13
 #define pinEncLeftA    17
 #define pinEncLeftB    5
-#define pinSonarServo  15
-#define pinWinch       32
+#define pinSonarServo  15   //The servo the Ultrasonic Sensor is on
+#define pinWinch       32   //
 #define pinSmartLED    25
 #define pinStatusLED   2
-#define pinButton      27
-#define pinLockServo   33
+#define pinButton      27   
+#define pinLockServo   33   //The servo used to lock the rope in place

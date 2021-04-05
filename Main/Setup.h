@@ -3,19 +3,19 @@
 
 #include "_Pinout.h"
 
-static boolean running = false;
+static boolean running = false;     
 static boolean climbing = false;
 
-volatile int32_t ENC_vi32LeftOdometer;
-volatile int32_t ENC_vi32RightOdometer;
+volatile int32_t ENC_vi32LeftOdometer;  //Given to us from Naish - Left Encoder Value
+volatile int32_t ENC_vi32RightOdometer; //Given to us from Naish - Right Encoder Value
 
-const int resolution = 10;
+const int resolution = 10;  
 
-int robotSequence = 0;
-int robotDriveSequence=0;
-double stopTimer=0;
+int robotSequence = 0;  //Used to know where in the overall sequence the robot is
+int robotDriveSequence=0;   // Used to know where in the the drive sequence we are which is apart of the overall sequence
+double stopTimer=0; //Used to time parts of the drive sequence
 
-double wallDist = 0;
+double wallDist = 0;    //How far are we from the wall
 
 /*
 struct mapPoint {
@@ -28,9 +28,9 @@ struct mapPoint {
 static double distMapActive[180]; //map that currently has values being added
 static double distMapFull[180]; //most recent mapping that has been completed
 
-Adafruit_NeoPixel SmartLEDs(2, pinSmartLED, NEO_GRB + NEO_KHZ400);
+Adafruit_NeoPixel SmartLEDs(2, pinSmartLED, NEO_GRB + NEO_KHZ400);  //Adding the Smart LED's
 
-#include "Climbing.h"
+#include "Climbing.h"   //Addng all our header files (Used to make the code easier to read (Better Practice))
 #include "Drive.h"
 #include "Encoder.h"
 #include "Navigation.h"
@@ -90,7 +90,7 @@ void setup() {
     ledcAttachPin(pinWinch, 7);
     ledcSetup(7, 20000, 8);
 
-    SmartLEDs.begin();
+    SmartLEDs.begin();  //Getting the LED's to run
     SmartLEDs.clear();
     SmartLEDs.show();
 }
