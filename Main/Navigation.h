@@ -21,7 +21,7 @@ double getTOF() {
     digitalWrite(pinUStrig, LOW);
 
     //the echo pin is set high by the sensor for the duration of the time of flight, pulseIn() gets that time
-    duration = pulseIn(pinUSecho, HIGH, 3000); //if the delay is more than 3 ms then stop waiting (~ 1 m which is longer than distances we need to measure)
+    duration = pulseIn(pinUSecho, HIGH, 5000); //if the delay is more than 5 ms then stop waiting (~ 1.4 m which is longer than distances we need to measure)
 
     return duration;
 }

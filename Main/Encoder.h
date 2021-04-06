@@ -229,6 +229,9 @@ void clearEncoders() {
         leftEncHist[i] = 0;
         timeHist[i] = 0;
     }
+
+    deltaRegisterRight = 0;
+    deltaRegisterLeft = 0;
 }
 
 #endif
