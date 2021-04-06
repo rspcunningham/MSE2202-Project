@@ -13,7 +13,7 @@ void moveRobotSequence(double distance)
             {                         //50 -> 200 //Has enough time passed with the US having a large distance
                 robotDriveSequence++; //Go to next step in the drive sequence
                 stopTimer = millis(); //Saving the time it's called
-                stopMotors();         //Stops the motors and stores a time in stopTimer
+                stopMotors();         //Stops the motors
             }
         }
         else
@@ -27,7 +27,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 500)
         {                         //Stop for time(in milliseconds)
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopTimer = millis(); //Stops the motors and stores a time in stopTimer
+            stopTimer = millis(); //Stops the motors 
         }
         break;
 
@@ -36,7 +36,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 400)
         {                         //250 -> 400  //Turn for time(in milliseconds)
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopMotors();         //Stops the motors and stores a time in stopTimer
+            stopMotors();         //Stops the motors 
             stopTimer = millis(); //Saving the time it's called
             clearEncoders();
         }
@@ -47,7 +47,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 500)
         {                         //Stop for time(in milliseconds)
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopTimer = millis(); //Stops the motors and stores a time in stopTimer
+            stopTimer = millis(); //Stops the motors 
             clearEncoders();
         }
         break;
@@ -57,7 +57,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 500)
         {                         //Hard code forward for 500ms so it can get in front of box so US can get a reading then use that
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopMotors();         //Stops the motors and stores a time in stopTimer
+            stopMotors();         //Stops the motors 
             stopTimer = millis(); //Saving the time it's called
         }
 
@@ -68,7 +68,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 500)
         {                         //Stop for time(in milliseconds)
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopTimer = millis(); //Stops the motors and stores a time in stopTimer
+            stopTimer = millis(); //Stops the motors 
         }
         break;
 
@@ -79,7 +79,7 @@ void moveRobotSequence(double distance)
             if ((millis() - stopTimer) >= 200)
             {                         //100 -> 200  //Has enough time passed with the US having a large distance
                 robotDriveSequence++; //Go to next step in the drive sequence
-                stopMotors();         //Stops the motors and stores a time in stopTimer
+                stopMotors();         //Stops the motors 
                 stopTimer = millis(); //Saving the time it's called
             }
         }
@@ -90,7 +90,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 500)
         {                         //Stop for time(in milliseconds)
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopTimer = millis(); //Stops the motors and stores a time in stopTimer
+            stopTimer = millis(); //Stops the motors 
         }
         break;
 
@@ -99,7 +99,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 400)
         {                         //Turn for time(in milliseconds)
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopMotors();         //Stops the motors and stores a time in stopTimer
+            stopMotors();         //Stops the motors 
             stopTimer = millis(); //Saving the time it's called
             clearEncoders();
         }
@@ -111,7 +111,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 500)
         {                         //Stop for time(in milliseconds)
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopTimer = millis(); //Stops the motors and stores a time in stopTimer
+            stopTimer = millis(); //Stops the motors 
             clearEncoders();
         }
         break;
@@ -121,7 +121,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 400)
         {                         //Hard code forward for time (ms) so it can get in range of wall so US can get a reading then use that
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopMotors();         //Stops the motors and stores a time in stopTimer
+            stopMotors();         //Stops the motors 
             stopTimer = millis(); //Saving the time it's called
         }
 
@@ -132,7 +132,7 @@ void moveRobotSequence(double distance)
         if ((millis() - stopTimer) >= 500)
         {                         //Stop for time(in milliseconds)
             robotDriveSequence++; //Go to next step in the drive sequence
-            stopTimer = millis(); //Stops the motors and stores a time in stopTimer
+            stopTimer = millis(); //Stops the motors 
         }
         break;
 
