@@ -1,5 +1,6 @@
 #include <Arduino.h> //need to include this so visual studio IDE knows I am writing in arduino and not just c++
 #include <Adafruit_NeoPixel.h> //library to run the smart LEDs
+#include <NewPing.h> //Library to run the ultrasound sensor with pin interrupts (no delay functions)
 #include "_Pinout.h" //contains pin definitions for every pin number used
 
 static boolean running = false;     
@@ -8,14 +9,13 @@ static boolean climbing = false;
 volatile int32_t ENC_vi32LeftOdometer;  //Given to us from Naish - Left Encoder Value
 volatile int32_t ENC_vi32RightOdometer; //Given to us from Naish - Right Encoder Value
 
-const int resolution = 10;  
-
 int robotSequence = 0;  //Used to know where in the overall sequence the robot is
 int robotDriveSequence = 0;   // Used to know where in the the drive sequence we are which is apart of the overall sequence
 double stopTimer = 0; //Used to time parts of the drive sequence
 double wallDist = 0;    //How far are we from the wall
 
 Adafruit_NeoPixel SmartLEDs(2, pinSmartLED, NEO_GRB + NEO_KHZ400);  //Adding the Smart LED's
+NewPing sonar(pinUStrig, pinUSecho, 100); //Add the sonar object, max distance 100 cm
 
 #include "Climbing.h"   //Addng all our header files (Used to make the code easier to read (Better Practice))
 #include "Drive.h"
@@ -72,7 +72,8 @@ void setup() {
     ledcAttachPin(pinWinch, 7);
     ledcSetup(7, 20000, 8);
 
-    SmartLEDs.begin();  //set up the smart LEDS, dont turn them on to start
+    //set up the smart LEDS, dont turn them on to start
+    SmartLEDs.begin();  
     SmartLEDs.clear();
     SmartLEDs.show();
 }

@@ -3,7 +3,7 @@ double averageSpeed = 0.2;  //in ticks/ms
 
 //gain values for the PID controller
 double gainP = 0;  // % per ticks/ms
-double gainI = 6;  // % per ticks
+double gainI = 3;  // % per ticks
 double gainD = 0;  // % per ticks/ms^2
 
 double gainA = 0.005;  // ticks/ms per degree

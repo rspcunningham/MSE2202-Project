@@ -35,7 +35,7 @@ void loop() {
                 robotSequence ++; //Go to next step of sequence
                 break;
             case 1:  //Driving around obstacle and getting up to the robot
-                moveRobotSequence(wallDist);   //drive according to parameters defined by move sequence
+                moveRobotSequence();   //drive according to parameters defined by move sequence
                 break;
             case 2: 
                 setLock(40);    //close the lock servo to hold rope in winch
