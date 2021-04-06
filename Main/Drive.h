@@ -157,7 +157,6 @@ void stopMotors() {
     ledcWrite(2, 255);
     ledcWrite(3, 255);
     ledcWrite(4, 255);
-    stopTimer = millis();  //Saving the time it's called
 }
 
 //turn on only the left motor, at full power, to do a turn without moving forward
