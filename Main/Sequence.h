@@ -27,6 +27,7 @@ void moveRobotSequence(double distance) {
             if ((millis() - stopTimer) >= 400) {  //250 -> 400  //Turn for time(in milliseconds)
                 robotDriveSequence++;             //Go to next step in the drive sequence
                 stopMotors();                     //Stops the motors and stores a time in stopTimer
+                clearEncoders();
             }
             break;
 
@@ -72,9 +73,10 @@ void moveRobotSequence(double distance) {
 
         case 8:                                   // Turn Right
             rightTurn();                          //Run Motors Rights
-            if ((millis() - stopTimer) >= 400) {  //Turn for time(in milliseconds)
+            if ((millis() - stopTimer) >= 500) {  //Turn for time(in milliseconds)
                 robotDriveSequence++;             //Go to next step in the drive sequence
                 stopMotors();                     //Stops the motors and stores a time in stopTimer
+                clearEncoders();
             }
             break;
 

@@ -223,4 +223,12 @@ void updateEncoder(long currentLoopTime) {
     timeHist[samples] = currentLoopTime;
 }
 
+void clearEncoders() {
+    for (int i = 0; i <= samples; i++) {
+        rightEncHist[i] = 0;
+        leftEncHist[i] = 0;
+        timeHist[i] = 0;
+    }
+}
+
 #endif
