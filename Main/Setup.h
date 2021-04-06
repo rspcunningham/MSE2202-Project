@@ -1,7 +1,6 @@
-#include <Arduino.h>
-#include <Adafruit_NeoPixel.h>
-
-#include "_Pinout.h"
+#include <Arduino.h> //need to include this so visual studio IDE knows I am writing in arduino and not just c++
+#include <Adafruit_NeoPixel.h> //library to run the smart LEDs
+#include "_Pinout.h" //contains pin definitions for every pin number used
 
 static boolean running = false;     
 static boolean climbing = false;
@@ -12,21 +11,9 @@ volatile int32_t ENC_vi32RightOdometer; //Given to us from Naish - Right Encoder
 const int resolution = 10;  
 
 int robotSequence = 0;  //Used to know where in the overall sequence the robot is
-int robotDriveSequence=0;   // Used to know where in the the drive sequence we are which is apart of the overall sequence
-double stopTimer=0; //Used to time parts of the drive sequence
-
+int robotDriveSequence = 0;   // Used to know where in the the drive sequence we are which is apart of the overall sequence
+double stopTimer = 0; //Used to time parts of the drive sequence
 double wallDist = 0;    //How far are we from the wall
-
-/*
-struct mapPoint {
-    unsigned long time;
-    int angle;
-    double distance;
-};
-*/
-
-static double distMapActive[180]; //map that currently has values being added
-static double distMapFull[180]; //most recent mapping that has been completed
 
 Adafruit_NeoPixel SmartLEDs(2, pinSmartLED, NEO_GRB + NEO_KHZ400);  //Adding the Smart LED's
 
@@ -36,7 +23,6 @@ Adafruit_NeoPixel SmartLEDs(2, pinSmartLED, NEO_GRB + NEO_KHZ400);  //Adding the
 #include "Navigation.h"
 #include "Utilities.h"
 #include "Sequence.h"
-
 
 void setup() {
     // Define inputs and outputs:
@@ -50,11 +36,10 @@ void setup() {
     pinMode(pinEncRightA, INPUT_PULLUP);
     pinMode(pinEncRightB, INPUT_PULLUP);
 
-    //Begin Serial communication at a baudrate of 9600:
+    //Begin Serial communication at a baudrate of 115200:
     Serial.begin(115200);
-    //Serial2.begin(2400, SERIAL_8N1, pinIR);
 
-    //setup PWM for motors
+    //setup PWM for driving motors
     ledcAttachPin(pinMotorLeftA, 1);  // assign Motors pins to channels
     ledcAttachPin(pinMotorLeftB, 2);
     ledcAttachPin(pinMotorRightA, 3);
@@ -74,10 +59,7 @@ void setup() {
     attachInterrupt(pinEncRightA, ENC_isrRightA, CHANGE);
     attachInterrupt(pinEncRightB, ENC_isrRightB, CHANGE);
 
-    ENC_btLeftMotorRunningFlag = false;
-    ENC_btRightMotorRunningFlag = false;
-
-    //setup sonar servo
+    //setup servos
     ledcAttachPin(pinSonarServo, 10);
     ledcSetup(10, 50, 16);
     setServo(10);
@@ -90,7 +72,7 @@ void setup() {
     ledcAttachPin(pinWinch, 7);
     ledcSetup(7, 20000, 8);
 
-    SmartLEDs.begin();  //Getting the LED's to run
+    SmartLEDs.begin();  //set up the smart LEDS, dont turn them on to start
     SmartLEDs.clear();
     SmartLEDs.show();
 }

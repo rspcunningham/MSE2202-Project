@@ -1,35 +1,37 @@
 
+//USed to flash the blue LED on the esp32 to indicate that the code is on (but the bot may or may not be "running")
 void flashStatusLED() {
-    long currentTime = millis();    //Store the current time
-    static long lastTime;   //what is the last time
-    static boolean state;   //what is the button state
+    long currentTime = millis();    
+    static long lastTime;   
+    static boolean state;  
     int interval = 500; 
 
     if (currentTime - lastTime >= interval) {
         lastTime = currentTime;
-        state = !state;
+        state = !state; //change between light on or off
         digitalWrite(pinStatusLED, state);
     }
 }
 
+//Used to flicker between the two smart LEDs when the bot is running
 void flashSmartLED() {
     long currentTime = millis();
     static long lastTime;
     static boolean state;
-    int interval = 100;
-    int brightness = 25;
+    int interval = 100; //how often do the lights switch in ms
+    int brightness = 25; //brightness level between 0 and 255
 
-    if (currentTime < lastTime + interval) return;
+    if (currentTime < lastTime + interval) return; 
     lastTime = currentTime;
-    state = !state;
+    state = !state; //change state between true and false to controll which LED is on
 
     if (state) {
-        SmartLEDs.setPixelColor(0, brightness, brightness, brightness);
-        SmartLEDs.setPixelColor(1, 0, 0, 0);
+        SmartLEDs.setPixelColor(0, brightness, brightness, brightness); //turn on all 3 pixels to produce white light
+        SmartLEDs.setPixelColor(1, 0, 0, 0);   //turn off the other light
         SmartLEDs.show();
     } else {
-        SmartLEDs.setPixelColor(0, 0, 0, 0);
-        SmartLEDs.setPixelColor(1, brightness, brightness, brightness);
+        SmartLEDs.setPixelColor(0, 0, 0, 0); //turn off the LED
+        SmartLEDs.setPixelColor(1, brightness, brightness, brightness); //turn on all 3 pixels to produce white on the other light
         SmartLEDs.show();
     }
 }
